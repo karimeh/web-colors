@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Theory in Web Design – A Concise Guide</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --accent: #6366f1;
+            --radius: 14px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 24px 16px 60px;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+        header p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
+        }
+        .card h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-wheel {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(
+                red, #ff0, lime, cyan, blue, magenta, red
+            );
+            margin: 12px auto 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+        .harmony-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .harmony-item {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 12px;
+            flex: 1 1 180px;
+            min-width: 160px;
+        }
+        .harmony-name {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .swatches {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .harmony-desc {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .psych-swatches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .psych-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 8px 12px;
+            flex: 1 1 130px;
+            min-width: 120px;
+            border: 1px solid #e2e8f0;
+        }
+        .psych-box {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+        .psych-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tip-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+        }
+        .tip-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .tip-list li:last-child { border-bottom: none; }
+        .tip-num {
+            background: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            .harmony-item { flex: 1 1 140px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Color Theory in Web Design</h1>
+            <p>A quick, practical reference – how colors work together on the screen</p>
+        </header>
+
+        <!-- Color Wheel -->
+        <div class="card">
+            <h2>🌈 The Color Wheel</h2>
+            <div class="color-wheel" title="12‑color wheel (simplified)"></div>
+            <p style="text-align:center; color:var(--text-light); margin-bottom:8px;">
+                <strong>Primary:</strong> Red, Yellow, Blue &nbsp;|&nbsp;
+                <strong>Secondary:</strong> Green, Orange, Purple &nbsp;|&nbsp;
+                <strong>Tertiary:</strong> mixes like red‑orange, blue‑green, etc.
+            </p>
+            <p style="font-size:0.88rem;">The wheel helps you choose colors that look good together. Most web palettes start from here.</p>
+        </div>
+
+        <!-- Color Harmonies -->
+        <div class="card">
+            <h2>🔗 Color Harmonies</h2>
+            <p style="font-size:0.92rem; margin-bottom:10px;">These formulas guarantee balanced combinations. Use them as a starting point for your website.</p>
+            <div class="harmony-grid">
+                <div class="harmony-item">
+                    <div class="harmony-name">Monochromatic</div>
+                    <div class="swatches">
+                        <div class="swatch" style="background:#3b82f6;"></div>
+                        <div class="swatch" style="background:#60a5fa;"></div>
+                        <div class="swatch" style="background:#93c5fd;"></div>
+                        <div class="swatch" style="background:#bfdbfe;"></div>
+                    </div>
+                    <div class="harmony-desc">One hue in varying lightness. Clean & simple.</div>
+                </div>
+                <div class="harmony-item">
+                    <div class="harmony-name">Analogous</div>
+                    <div class="swatches">
+                        <div class="swatch" style="background:#3b82f6;"></div>
+                        <div class="swatch" style="background:#6366f1;"></div>
+                        <div class="swatch" style="background:#8b5cf6;"></div>
+                        <div class="swatch" style="background:#a78bfa;"></div>
+                    </div>
+                    <div class="harmony-desc">Colors side‑by‑side on the wheel. Harmonious & serene.</div>
+                </div>
+                <div class="harmony-item">
+                    <div class="harmony-name">Complementary</div>
+                    <div class="swatches">
+                        <div class="swatch" style="background:#ef4444;"></div>
+                        <div class="swatch" style="background:#f8fafc; border:1px dashed #cbd5e1;"></div>
+                        <div class="swatch" style="background:#10b981;"></div>
+                    </div>
+                    <div class="harmony-desc">Two opposite colors. High contrast – use sparingly.</div>
+                </div>
+                <div class="harmony-item">
+                    <div class="harmony-name">Triadic</div>
+                    <div class="swatches">
+                        <div class="swatch" style="background:#f59e0b;"></div>
+                        <div class="swatch" style="background:#8b5cf6;"></div>
+                        <div class="swatch" style="background:#0ea5e9;"></div>
+                    </div>
+                    <div class="harmony-desc">Three equally spaced hues. Vibrant & balanced.</div>
+                </div>
+                <div class="harmony-item">
+                    <div class="harmony-name">Tetradic (Double)</div>
+                    <div class="swatches">
+                        <div class="swatch" style="background:#ef4444;"></div>
+                        <div class="swatch" style="background:#10b981;"></div>
+                        <div class="swatch" style="background:#f59e0b;"></div>
+                        <div class="swatch" style="background:#8b5cf6;"></div>
+                    </div>
+                    <div class="harmony-desc">Two complementary pairs. Rich but hard to balance.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Psychology -->
+        <div class="card">
+            <h2>🧠 Color Psychology (Quick Reference)</h2>
+            <p style="font-size:0.9rem; margin-bottom:12px;">Colors evoke emotions. Choose them based on the feeling you want to convey.</p>
+            <div class="psych-swatches">
+                <div class="psych-chip"><div class="psych-box" style="background:#2563eb;"></div><span class="psych-text">Blue – Trust, calm, corporate</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#dc2626;"></div><span class="psych-text">Red – Urgency, passion, excitement</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#16a34a;"></div><span class="psych-text">Green – Nature, growth, health</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#eab308;"></div><span class="psych-text">Yellow – Optimism, warmth, caution</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#ea580c;"></div><span class="psych-text">Orange – Energy, friendly, affordable</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#7c3aed;"></div><span class="psych-text">Purple – Luxury, creativity, wisdom</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#1e293b;"></div><span class="psych-text">Black – Elegance, power, modernity</span></div>
+                <div class="psych-chip"><div class="psych-box" style="background:#ffffff; border:1px solid #cbd5e1;"></div><span class="psych-text">White – Purity, simplicity, space</span></div>
+            </div>
+        </div>
+
+        <!-- Practical Tips -->
+        <div class="card">
+            <h2>💡 Practical Tips for Web</h2>
+            <ul class="tip-list">
+                <li><span class="tip-num">1</span> <strong>60‑30‑10 Rule:</strong> 60% dominant color, 30% secondary, 10% accent. Keeps balance.</li>
+                <li><span class="tip-num">2</span> <strong>Accessibility first:</strong> Ensure text has at least 4.5:1 contrast ratio against background (use tools like WebAIM).</li>
+                <li><span class="tip-num">3</span> <strong>Neutrals are your friend:</strong> Grays, whites, and blacks give the eye a rest and highlight key elements.</li>
+                <li><span class="tip-num">4</span> <strong>Use HSL for flexibility:</strong> Define a base hue and adjust lightness/saturation for variations – easier than HEX tweaking.</li>
+                <li><span class="tip-num">5</span> <strong>Limit your palette:</strong> 3–5 colors (plus neutrals) are usually enough. Too many colors confuse users.</li>
+                <li><span class="tip-num">6</span> <strong>Test on real screens:</strong> Colors look different on various devices. Always preview on phone and desktop.</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>🎨 Use these principles as a starting point – great design comes from experimentation.</p>
+        </footer>
+    </div>
+</body>
+</html>

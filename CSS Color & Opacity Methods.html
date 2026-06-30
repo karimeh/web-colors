@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Color & Opacity Methods – From Simple to Advanced</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --accent: #3b82f6;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --radius: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 16px 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 10px 10px;
+        }
+
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-top: 6px;
+        }
+
+        .method-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .method-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            background: #f9fafb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .method-header .method-icon {
+            font-size: 1.8rem;
+        }
+
+        .method-header h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .method-body {
+            padding: 24px;
+        }
+
+        .method-desc {
+            margin-bottom: 20px;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .example-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .example-card:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        .swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+            background-color: var(--color);
+        }
+
+        .swatch-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #1e293b;
+        }
+
+        .swatch-code {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.8rem;
+            background: #f1f5f9;
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: #334155;
+            word-break: break-all;
+            display: block;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .note {
+            background: #fef9c3;
+            border-left: 4px solid #eab308;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #422006;
+        }
+
+        @media (max-width: 640px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .method-header h2 {
+                font-size: 1.2rem;
+            }
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>🎨 CSS Color & Opacity Methods</h1>
+            <p class="subtitle">From simplest named colors to advanced relative color syntax — with live examples.</p>
+        </header>
+
+        <!-- 1. Named Colors -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🏷️</span>
+                <h2>1. Named Colors</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">CSS supports 148 named colors. These are the easiest way to apply colors, though the palette is limited.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: red;"></div>
+                        <div class="swatch-label">Red</div>
+                        <code class="swatch-code">color: red;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rebeccapurple;"></div>
+                        <div class="swatch-label">RebeccaPurple</div>
+                        <code class="swatch-code">background: rebeccapurple;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: cornflowerblue;"></div>
+                        <div class="swatch-label">CornflowerBlue</div>
+                        <code class="swatch-code">border-color: cornflowerblue;</code>
+                    </div>
+                </div>
+                <div class="note">💡 Named colors include <code>transparent</code> and <code>currentColor</code> (covered later).</div>
+            </div>
+        </section>
+
+        <!-- 2. HEX Colors -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🔢</span>
+                <h2>2. HEX Colors</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">Hexadecimal (HEX) notation is the most common. Supports shorthand (#RGB) and full (#RRGGBB). No alpha in shorthand, but modern browsers support 8-digit hex with alpha (#RRGGBBAA).</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: #FF5733;"></div>
+                        <div class="swatch-label">#FF5733</div>
+                        <code class="swatch-code">background: #FF5733;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: #0F0;"></div>
+                        <div class="swatch-label">#0F0 (shorthand)</div>
+                        <code class="swatch-code">color: #0F0; /* = #00FF00 */</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: #33415580;"></div>
+                        <div class="swatch-label">#33415580 (with alpha)</div>
+                        <code class="swatch-code">background: #33415580; /* 50% opacity */</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. RGB & RGBA -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">📊</span>
+                <h2>3. RGB / RGBA</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">RGB uses red, green, blue values (0–255). RGBA adds an alpha channel (0–1). Modern syntax also allows space-separated values and alpha with slash.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rgb(70, 130, 180);"></div>
+                        <div class="swatch-label">SteelBlue</div>
+                        <code class="swatch-code">background: rgb(70, 130, 180);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rgba(255, 99, 71, 0.7);"></div>
+                        <div class="swatch-label">Tomato 70% opacity</div>
+                        <code class="swatch-code">background: rgba(255, 99, 71, 0.7);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rgb(0 255 0 / 0.3);"></div>
+                        <div class="swatch-label">Green (modern syntax)</div>
+                        <code class="swatch-code">color: rgb(0 255 0 / 0.3);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. HSL & HSLA -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🌈</span>
+                <h2>4. HSL / HSLA</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">HSL defines colors by hue (0–360), saturation (0–100%), and lightness (0–100%). HSLA adds alpha. Intuitive for creating color variations.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hsl(200, 100%, 50%);"></div>
+                        <div class="swatch-label">Vibrant Blue</div>
+                        <code class="swatch-code">background: hsl(200, 100%, 50%);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hsla(340, 80%, 60%, 0.6);"></div>
+                        <div class="swatch-label">Pink 60% opacity</div>
+                        <code class="swatch-code">background: hsla(340, 80%, 60%, 0.6);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hsl(120 100% 40% / 0.5);"></div>
+                        <div class="swatch-label">Green (modern syntax)</div>
+                        <code class="swatch-code">border: 3px solid hsl(120 100% 40% / 0.5);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. HWB -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🎚️</span>
+                <h2>5. HWB</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">HWB (Hue, Whiteness, Blackness) is another cylindrical model. Easier to lighten/darken by adjusting whiteness/blackness.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hwb(0 0% 0%);"></div>
+                        <div class="swatch-label">Red (pure)</div>
+                        <code class="swatch-code">background: hwb(0 0% 0%);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hwb(200 30% 20%);"></div>
+                        <div class="swatch-label">Muted Blue</div>
+                        <code class="swatch-code">color: hwb(200 30% 20%);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hwb(300 10% 20% / 0.7);"></div>
+                        <div class="swatch-label">Purple 70% opacity</div>
+                        <code class="swatch-code">background: hwb(300 10% 20% / 0.7);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Lab & LCH -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🔬</span>
+                <h2>6. CIE Lab & LCH</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">Lab and LCH provide perceptually uniform color spaces. Lab uses Lightness, a-axis (green↔red), b-axis (blue↔yellow). LCH uses Lightness, Chroma, Hue.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: lab(50% 0 0);"></div>
+                        <div class="swatch-label">Mid Gray (Lab)</div>
+                        <code class="swatch-code">background: lab(50% 0 0);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: lab(60% 60 -40);"></div>
+                        <div class="swatch-label">Violet-ish</div>
+                        <code class="swatch-code">color: lab(60% 60 -40);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: lch(70% 70 40);"></div>
+                        <div class="swatch-label">Orange (LCH)</div>
+                        <code class="swatch-code">background: lch(70% 70 40);</code>
+                    </div>
+                </div>
+                <div class="note">⚠️ Lab/LCH values can go beyond sRGB gamut; they may be clipped on standard displays.</div>
+            </div>
+        </section>
+
+        <!-- 7. Oklab & Oklch -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🧪</span>
+                <h2>7. Oklab & Oklch</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">Oklab and Oklch are improved perceptual color spaces, designed for better uniformity and fewer hue shifts when interpolating.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: oklab(0.6 0.15 0.1);"></div>
+                        <div class="swatch-label">Warm Pink</div>
+                        <code class="swatch-code">background: oklab(0.6 0.15 0.1);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: oklch(0.7 0.2 250);"></div>
+                        <div class="swatch-label">Sky Blue</div>
+                        <code class="swatch-code">color: oklch(0.7 0.2 250);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: oklch(0.5 0.25 140 / 0.8);"></div>
+                        <div class="swatch-label">Green 80% opacity</div>
+                        <code class="swatch-code">background: oklch(0.5 0.25 140 / 0.8);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. color() function (Display-P3) -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🖥️</span>
+                <h2>8. color() – Wide‑Gamut</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">The <code>color()</code> function allows specifying colors in various color spaces (e.g., display-p3, srgb, a98-rgb). Ideal for modern HDR screens.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color(srgb 1 0 0);"></div>
+                        <div class="swatch-label">sRGB Red</div>
+                        <code class="swatch-code">background: color(srgb 1 0 0);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color(display-p3 1 0.5 0);"></div>
+                        <div class="swatch-label">Display‑P3 Orange</div>
+                        <code class="swatch-code">color: color(display-p3 1 0.5 0);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color(srgb 0.2 0.6 0.8 / 0.6);"></div>
+                        <div class="swatch-label">sRGB Blue 60% opacity</div>
+                        <code class="swatch-code">background: color(srgb 0.2 0.6 0.8 / 0.6);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Opacity & Filter -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">👻</span>
+                <h2>9. Opacity & Filter: Opacity()</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">The <code>opacity</code> property makes an entire element (including children) transparent. <code>filter: opacity()</code> can apply opacity to just the element itself (but still affects layering).</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rgba(255,0,0,0.5);"></div>
+                        <div class="swatch-label">RGBA alpha = 0.5</div>
+                        <code class="swatch-code">background: rgba(255,0,0,0.5);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: red; opacity: 0.5; position: relative;"><span style="position:absolute; top:0; left:0; right:0; bottom:0; background:red; opacity:0.5;"></span><div style="position:relative; z-index:1; color:white; padding:10px;">Text</div></div>
+                        <div class="swatch-label">element opacity:0.5</div>
+                        <code class="swatch-code">opacity: 0.5; background: red;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: #3b82f6; filter: opacity(50%);"></div>
+                        <div class="swatch-label">filter: opacity(50%)</div>
+                        <code class="swatch-code">filter: opacity(50%); background: #3b82f6;</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. currentColor & transparent -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">♻️</span>
+                <h2>10. currentColor & transparent</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc"><code>currentColor</code> refers to the element’s text color. <code>transparent</code> is fully transparent (equivalent to rgba(0,0,0,0)).</p>
+                <div class="examples-grid">
+                    <div class="example-card" style="color: #8b5cf6;">
+                        <div class="swatch" style="--color: currentColor;"></div>
+                        <div class="swatch-label">currentColor (inherits text color)</div>
+                        <code class="swatch-code">background: currentColor;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: transparent; border: 2px dashed #aaa;"></div>
+                        <div class="swatch-label">transparent</div>
+                        <code class="swatch-code">background: transparent;</code>
+                    </div>
+                    <div class="example-card" style="color: #0ea5e9;">
+                        <div class="swatch" style="--color: currentColor; opacity: 0.4;"></div>
+                        <div class="swatch-label">currentColor + opacity</div>
+                        <code class="swatch-code">background: currentColor; opacity: 0.4;</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. System Colors -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🖥️</span>
+                <h2>11. System Colors</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">System colors reflect the user’s operating system theme (light/dark). Useful for respecting user preferences.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: Canvas; border:1px solid #ccc;"></div>
+                        <div class="swatch-label">Canvas</div>
+                        <code class="swatch-code">background: Canvas; color: CanvasText;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: Highlight;"></div>
+                        <div class="swatch-label">Highlight</div>
+                        <code class="swatch-code">background: Highlight;</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: GrayText;"></div>
+                        <div class="swatch-label">GrayText</div>
+                        <code class="swatch-code">color: GrayText;</code>
+                    </div>
+                </div>
+                <div class="note">System colors react to OS theme changes; they are powerful for accessible design.</div>
+            </div>
+        </section>
+
+        <!-- 12. CSS Custom Properties with color & opacity -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🎛️</span>
+                <h2>12. CSS Variables & Opacity</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">Define colors once with custom properties; reuse with different opacities by decomposing channels or using <code>color-mix()</code>.</p>
+                <div class="examples-grid">
+                    <div class="example-card" style="--brand: #f97316;">
+                        <div class="swatch" style="--color: var(--brand);"></div>
+                        <div class="swatch-label">Original Brand Color</div>
+                        <code class="swatch-code">background: var(--brand);</code>
+                    </div>
+                    <div class="example-card" style="--brand: #f97316;">
+                        <div class="swatch" style="--color: rgb(from var(--brand) r g b / 0.4);"></div>
+                        <div class="swatch-label">Brand at 40% opacity (relative syntax)</div>
+                        <code class="swatch-code">background: rgb(from var(--brand) r g b / 0.4);</code>
+                    </div>
+                    <div class="example-card" style="--brand: #f97316;">
+                        <div class="swatch" style="--color: color-mix(in srgb, var(--brand) 60%, transparent);"></div>
+                        <div class="swatch-label">Brand mixed with transparent</div>
+                        <code class="swatch-code">background: color-mix(in srgb, var(--brand) 60%, transparent);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. color-mix() -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🧴</span>
+                <h2>13. color-mix()</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc"><code>color-mix()</code> blends two colors in a specified color space. Perfect for creating tints, shades, or opacity effects without losing gamut.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color-mix(in srgb, red 50%, blue);"></div>
+                        <div class="swatch-label">Red + Blue (50% each)</div>
+                        <code class="swatch-code">background: color-mix(in srgb, red 50%, blue);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color-mix(in lch, #10b981 70%, white);"></div>
+                        <div class="swatch-label">Emerald tint (lch space)</div>
+                        <code class="swatch-code">background: color-mix(in lch, #10b981 70%, white);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: color-mix(in oklch, navy 80%, transparent);"></div>
+                        <div class="swatch-label">Navy 80% opacity (via transparent)</div>
+                        <code class="swatch-code">background: color-mix(in oklch, navy 80%, transparent);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 14. Relative Color Syntax -->
+        <section class="method-section">
+            <div class="method-header">
+                <span class="method-icon">🧬</span>
+                <h2>14. Relative Color Syntax</h2>
+            </div>
+            <div class="method-body">
+                <p class="method-desc">Transform a color by modifying individual channels using <code>from</code>. The ultimate tool for dynamic theming and color manipulation.</p>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="swatch" style="--color: rgb(from #8b5cf6 r g b / 0.5);"></div>
+                        <div class="swatch-label">Violet at 50% alpha</div>
+                        <code class="swatch-code">background: rgb(from #8b5cf6 r g b / 0.5);</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: hsl(from #059669 h s calc(l + 20));"></div>
+                        <div class="swatch-label">Green lightened by 20%</div>
+                        <code class="swatch-code">background: hsl(from #059669 h s calc(l + 20));</code>
+                    </div>
+                    <div class="example-card">
+                        <div class="swatch" style="--color: oklch(from #d946ef l calc(c * 0.5) h);"></div>
+                        <div class="swatch-label">Magenta desaturated (oklch)</div>
+                        <code class="swatch-code">background: oklch(from #d946ef l calc(c * 0.5) h);</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align:center; margin-top:50px; color:#64748b; font-size:0.85rem;">
+            <p>✨ All examples render live using your browser’s CSS engine. For latest support, check <a href="https://caniuse.com" style="color:#3b82f6;">caniuse.com</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>

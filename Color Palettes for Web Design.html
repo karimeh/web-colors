@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palettes for Web Design – Types, Definitions & Pros/Cons</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --accent: #6366f1;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 20px 10px 10px;
+        }
+        .page-header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        .intro {
+            background: #fff;
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 36px;
+            border-left: 4px solid var(--accent);
+        }
+        .intro p { margin-bottom: 12px; }
+
+        .palette-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 36px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .palette-header {
+            padding: 16px 24px;
+            background: #f9fafb;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .palette-header .icon { font-size: 1.5rem; }
+        .palette-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .palette-body {
+            padding: 24px;
+        }
+
+        .description {
+            margin-bottom: 18px;
+            color: #334155;
+        }
+
+        .swatches-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .swatch-item {
+            flex: 1 1 60px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .swatch-box {
+            width: 100%;
+            height: 50px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+            margin-bottom: 4px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+        }
+        .swatch-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 14px;
+        }
+        @media (max-width: 600px) {
+            .pros-cons { grid-template-columns: 1fr; }
+        }
+        .pros, .cons {
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .pros { background: #ecfdf5; border-left: 4px solid #10b981; }
+        .cons { background: #fef2f2; border-left: 4px solid #ef4444; }
+        .pros h4, .cons h4 { margin-bottom: 6px; font-size: 0.95rem; }
+        .pros ul, .cons ul { margin: 0; padding-left: 18px; }
+        .pros li, .cons li { font-size: 0.85rem; color: #334155; margin-bottom: 4px; }
+
+        .css-methods {
+            background: #fff;
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 36px;
+            border-top: 4px solid var(--accent);
+        }
+        .css-methods h2 { margin-bottom: 14px; }
+        .css-methods ul { padding-left: 20px; }
+        .css-methods li { margin-bottom: 10px; font-family: monospace; font-size: 0.9rem; }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 40px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>🎨 Color Palettes for Web Design</h1>
+            <p class="subtitle">Definitions, visual examples, pros/cons, and how to define them in CSS</p>
+        </header>
+
+        <div class="intro">
+            <p>A color palette is a set of colors used together in a design. Choosing the right palette type can enhance aesthetics, usability, and brand identity. Below you'll find the most common palette types, each with a brief explanation, live swatches, and a breakdown of advantages and disadvantages.</p>
+            <p>All examples use standard CSS color definitions – you can copy the hex codes directly into your stylesheets.</p>
+        </div>
+
+        <!-- Monochromatic -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🔵</span>
+                <h2>Monochromatic</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Uses a single base hue and extends it with its tints (add white), shades (add black), and tones (add gray). Creates a clean, cohesive look.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#94a3b8;"></div><span class="swatch-label">#94a3b8</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#64748b;"></div><span class="swatch-label">#64748b</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#475569;"></div><span class="swatch-label">#475569</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#334155;"></div><span class="swatch-label">#334155</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#1e293b;"></div><span class="swatch-label">#1e293b</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Easy to create and maintain</li><li>Guaranteed harmony</li><li>Professional and minimal look</li><li>Great for UI backgrounds and text</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Can feel monotonous</li><li>Hard to highlight important elements</li><li>Lacks contrast for CTAs</li><li>May need an accent color for balance</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analogous -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🌊</span>
+                <h2>Analogous</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Combines colors that sit next to each other on the color wheel (usually 3–5). Creates a serene and comfortable design.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#0ea5e9;"></div><span class="swatch-label">#0ea5e9</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#06b6d4;"></div><span class="swatch-label">#06b6d4</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#10b981;"></div><span class="swatch-label">#10b981</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#14b8a6;"></div><span class="swatch-label">#14b8a6</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#22c55e;"></div><span class="swatch-label">#22c55e</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Naturally pleasing to the eye</li><li>Good for nature‑inspired themes</li><li>Easy to pick (adjacent on wheel)</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Low contrast between elements</li><li>Can blend together too much</li><li>Needs a dominant hue to avoid chaos</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complementary -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🔴🟢</span>
+                <h2>Complementary</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Pairs two colors opposite each other on the wheel (e.g., red & green). High contrast, very vibrant.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#ef4444;"></div><span class="swatch-label">#ef4444</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#ffffff; border:1px dashed #ccc;"></div><span class="swatch-label">Neutral</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#10b981;"></div><span class="swatch-label">#10b981</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Maximum contrast – great for CTAs</li><li>Draws attention instantly</li><li>Simple two‑color scheme</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Can be overwhelming if overused</li><li>Poor for text readability</li><li>Needs a neutral to balance</li><li>Not ideal for large areas</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Split-Complementary -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🔷🔶</span>
+                <h2>Split‑Complementary</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Uses one base color plus the two colors adjacent to its complement. Softer than complementary but still vibrant.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#f59e0b;"></div><span class="swatch-label">#f59e0b</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#8b5cf6;"></div><span class="swatch-label">#8b5cf6</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#ec4899;"></div><span class="swatch-label">#ec4899</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>High contrast without harshness</li><li>More nuanced than complementary</li><li>Easier to balance with neutrals</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Still can be tricky for beginners</li><li>Requires careful saturation control</li><li>May need a fourth accent</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Triadic -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🔺</span>
+                <h2>Triadic</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Three colors evenly spaced around the color wheel (120° apart). Offers strong visual contrast while retaining balance.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#ef4444;"></div><span class="swatch-label">#ef4444</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#3b82f6;"></div><span class="swatch-label">#3b82f6</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#eab308;"></div><span class="swatch-label">#eab308</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Vibrant and playful</li><li>Good for children’s sites / creative brands</li><li>Easy to create with HSL</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Can look chaotic if all equally used</li><li>Needs one dominant color</li><li>Hard to achieve a professional tone</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tetradic (Double Complementary) -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🔲</span>
+                <h2>Tetradic (Double Complementary)</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Uses two complementary pairs. Often forms a rectangle on the color wheel. Rich and diverse but complex to manage.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#f97316;"></div><span class="swatch-label">#f97316</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#06b6d4;"></div><span class="swatch-label">#06b6d4</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#8b5cf6;"></div><span class="swatch-label">#8b5cf6</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#eab308;"></div><span class="swatch-label">#eab308</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Offers maximum color variety</li><li>Great for complex illustrations</li><li>Can be split into warm/cool groups</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Very difficult to balance</li><li>Often requires a neutral background</li><li>Easy to look messy</li><li>Not suitable for minimal designs</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Square -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">🟪🟨</span>
+                <h2>Square</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Four colors spaced evenly (90° apart). Similar to tetradic but with equal distance. Very vibrant and attention‑grabbing.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#ef4444;"></div><span class="swatch-label">#ef4444</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#eab308;"></div><span class="swatch-label">#eab308</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#10b981;"></div><span class="swatch-label">#10b981</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#8b5cf6;"></div><span class="swatch-label">#8b5cf6</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Even more variety than tetradic</li><li>Works well for games / entertainment</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Hardest to harmonize</li><li>Needs a clear hierarchy</li><li>Can cause visual fatigue</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neutral / Grayscale -->
+        <div class="palette-section">
+            <div class="palette-header">
+                <span class="icon">⬜️⬛️</span>
+                <h2>Neutral (Grayscale)</h2>
+            </div>
+            <div class="palette-body">
+                <p class="description">Uses only black, white, and shades of gray. Sometimes accented with one or two colors.</p>
+                <div class="swatches-row">
+                    <div class="swatch-item"><div class="swatch-box" style="background:#f8fafc;"></div><span class="swatch-label">#f8fafc</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#cbd5e1;"></div><span class="swatch-label">#cbd5e1</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#64748b;"></div><span class="swatch-label">#64748b</span></div>
+                    <div class="swatch-item"><div class="swatch-box" style="background:#1e293b;"></div><span class="swatch-label">#1e293b</span></div>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros"><h4>✅ Pros</h4><ul><li>Timeless and sophisticated</li><li>Excellent for typography and UI</li><li>Easiest to make accessible</li></ul></div>
+                    <div class="cons"><h4>❌ Cons</h4><ul><li>Can feel cold or impersonal</li><li>Hard to express brand personality</li><li>Needs careful contrast management</li></ul></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to define colors in CSS -->
+        <div class="css-methods">
+            <h2>📐 How to Define Colors in CSS</h2>
+            <p style="margin-bottom:12px;">All palettes above can be implemented using any of these methods. Here are the most common ways to define colors for the web:</p>
+            <ul>
+                <li><strong>Named Colors:</strong> <code>color: red;</code> (147 named colors, e.g., <code>rebeccapurple</code>)</li>
+                <li><strong>HEX:</strong> <code>background: #ff5733;</code> (short <code>#f00</code>, full <code>#ff0000</code>, or 8‑digit with alpha <code>#ff000080</code>)</li>
+                <li><strong>RGB / RGBA:</strong> <code>color: rgb(255, 0, 0);</code> / <code>rgba(255,0,0,0.5);</code> (modern space‑separated: <code>rgb(255 0 0 / 0.5)</code>)</li>
+                <li><strong>HSL / HSLA:</strong> <code>background: hsl(200, 100%, 50%);</code> (intuitive for palette creation: change hue for variations)</li>
+                <li><strong>HWB:</strong> <code>border-color: hwb(0 0% 0%);</code></li>
+                <li><strong>Lab / LCH / Oklab / Oklch:</strong> <code>background: oklch(0.7 0.2 250);</code> (perceptually uniform, great for gradients)</li>
+                <li><strong>Custom Properties (Variables):</strong> <code>--brand: #6366f1; background: var(--brand);</code> (reusable, dynamic)</li>
+                <li><strong>color-mix():</strong> <code>background: color-mix(in srgb, var(--brand) 60%, white);</code> (create tints/shades programmatically)</li>
+                <li><strong>Relative Color Syntax:</strong> <code>background: hsl(from var(--brand) h s calc(l + 20));</code> (lighten/darken a color)</li>
+            </ul>
+            <p style="margin-top:12px;">💡 For palette harmony, using <strong>HSL</strong> is often the easiest – just rotate the hue while keeping saturation and lightness consistent.</p>
+        </div>
+
+        <footer>
+            <p>✨ Click any HEX code in previous guides to copy – use these palettes as a starting point for your own designs.</p>
+        </footer>
+    </div>
+</body>
+</html>

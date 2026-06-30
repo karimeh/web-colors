@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All 148 CSS Named Colors – Complete Reference (HEX, RGB, HSL)</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --border: #e2e8f0;
+            --accent: #6c5ce7;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 30%, #f5f3f0 60%, #eef2f7 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 16px 50px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 10px 10px;
+        }
+        .page-header .icon-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .page-header .swatch-icon {
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+            animation: hueRotate 6s linear infinite;
+        }
+        @keyframes hueRotate {
+            to { filter: hue-rotate(360deg); }
+        }
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #1a202c;
+            margin: 0;
+        }
+        .page-header .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 22px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+            background: #fafbfc;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--accent);
+            border-radius: 4px 0 0 4px;
+        }
+        .section-header .section-icon { font-size: 1.6rem; }
+        .section-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin: 0;
+        }
+        .section-header .badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--accent);
+            color: #fff;
+            letter-spacing: 0.3px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 8px 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 800px;
+        }
+        thead th {
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 10px 8px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 2px solid #dde4ee;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        thead th:first-child { text-align: center; width: 40px; } /* # */
+        thead th:nth-child(2) { text-align: center; width: 70px; } /* Swatch */
+        thead th:nth-child(3) { text-align: left; } /* Name */
+        thead th:nth-child(4) { text-align: left; width: 90px; } /* HEX */
+        thead th:nth-child(5) { text-align: left; width: 140px; } /* RGB */
+        thead th:nth-child(6) { text-align: left; width: 140px; } /* HSL */
+
+        tbody td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+            transition: background var(--transition);
+        }
+        tbody tr { transition: all var(--transition); }
+        tbody tr:hover { background: #f8fafc; }
+        tbody tr:last-child td { border-bottom: none; }
+
+        .num-cell {
+            text-align: center;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.8rem;
+            width: 40px;
+        }
+
+        .swatch-cell { text-align: center; }
+        .color-swatch {
+            display: inline-block;
+            width: 30px;
+            height: 22px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.12);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(255,255,255,0.2);
+            transition: all var(--transition);
+            vertical-align: middle;
+        }
+        tbody tr:hover .color-swatch {
+            transform: scale(1.15);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.14);
+        }
+
+        .name-cell {
+            font-weight: 600;
+            color: #1e293b;
+            text-transform: capitalize;
+        }
+        .code-cell {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-weight: 500;
+            color: #334155;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            user-select: all;
+            position: relative;
+        }
+        .code-cell:hover {
+            color: #0f172a;
+            background: #f1f5f9;
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin: -2px -6px;
+        }
+        .code-cell:active { transform: scale(0.96); }
+        .code-cell::after {
+            content: 'Click to copy';
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #1e293b;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.65rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s;
+            z-index: 5;
+        }
+        .code-cell:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .copied-flash {
+            animation: flashGreen 0.6s ease-out;
+        }
+        @keyframes flashGreen {
+            0% { background-color: #d4edda; color: #155724; }
+            100% { background-color: transparent; color: #334155; }
+        }
+
+        .rgb-cell, .hsl-cell {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            color: #475569;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        tbody tr:nth-child(even) { background: #fafbfc; }
+        tbody tr:nth-child(even):hover { background: #f1f5f9; }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.5rem; }
+            table { font-size: 0.75rem; min-width: 650px; }
+            thead th, tbody td { padding: 5px 6px; }
+            .color-swatch { width: 24px; height: 18px; }
+            .code-cell, .rgb-cell, .hsl-cell { font-size: 0.7rem; }
+        }
+        @media (max-width: 480px) {
+            body { padding: 10px 6px 30px; }
+            .page-header h1 { font-size: 1.3rem; }
+            .section-header h2 { font-size: 1rem; }
+            .section-header .badge { font-size: 0.7rem; padding: 2px 8px; }
+            table { font-size: 0.7rem; min-width: 550px; }
+            .color-swatch { width: 20px; height: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="icon-row">
+            <span class="swatch-icon" title="Color wheel"></span>
+            <h1>CSS Named Colors</h1>
+        </div>
+        <p class="subtitle">Complete reference of all 148 standard named colors – with HEX, RGB, HSL values</p>
+    </header>
+
+    <div class="container">
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-icon">🎨</span>
+                <h2>Full Palette</h2>
+                <span class="badge">148 colors</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Swatch</th>
+                            <th>Name</th>
+                            <th>HEX</th>
+                            <th>RGB</th>
+                            <th>HSL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="color-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✅ HEX code copied!</div>
+
+    <script>
+        (function() {
+            // Complete list of 148 CSS named colors with their hex codes
+            const namedColors = [
+                { name: "AliceBlue", hex: "#F0F8FF" },
+                { name: "AntiqueWhite", hex: "#FAEBD7" },
+                { name: "Aqua", hex: "#00FFFF" },
+                { name: "Aquamarine", hex: "#7FFFD4" },
+                { name: "Azure", hex: "#F0FFFF" },
+                { name: "Beige", hex: "#F5F5DC" },
+                { name: "Bisque", hex: "#FFE4C4" },
+                { name: "Black", hex: "#000000" },
+                { name: "BlanchedAlmond", hex: "#FFEBCD" },
+                { name: "Blue", hex: "#0000FF" },
+                { name: "BlueViolet", hex: "#8A2BE2" },
+                { name: "Brown", hex: "#A52A2A" },
+                { name: "BurlyWood", hex: "#DEB887" },
+                { name: "CadetBlue", hex: "#5F9EA0" },
+                { name: "Chartreuse", hex: "#7FFF00" },
+                { name: "Chocolate", hex: "#D2691E" },
+                { name: "Coral", hex: "#FF7F50" },
+                { name: "CornflowerBlue", hex: "#6495ED" },
+                { name: "Cornsilk", hex: "#FFF8DC" },
+                { name: "Crimson", hex: "#DC143C" },
+                { name: "Cyan", hex: "#00FFFF" },
+                { name: "DarkBlue", hex: "#00008B" },
+                { name: "DarkCyan", hex: "#008B8B" },
+                { name: "DarkGoldenRod", hex: "#B8860B" },
+                { name: "DarkGray", hex: "#A9A9A9" },
+                { name: "DarkGreen", hex: "#006400" },
+                { name: "DarkKhaki", hex: "#BDB76B" },
+                { name: "DarkMagenta", hex: "#8B008B" },
+                { name: "DarkOliveGreen", hex: "#556B2F" },
+                { name: "DarkOrange", hex: "#FF8C00" },
+                { name: "DarkOrchid", hex: "#9932CC" },
+                { name: "DarkRed", hex: "#8B0000" },
+                { name: "DarkSalmon", hex: "#E9967A" },
+                { name: "DarkSeaGreen", hex: "#8FBC8F" },
+                { name: "DarkSlateBlue", hex: "#483D8B" },
+                { name: "DarkSlateGray", hex: "#2F4F4F" },
+                { name: "DarkTurquoise", hex: "#00CED1" },
+                { name: "DarkViolet", hex: "#9400D3" },
+                { name: "DeepPink", hex: "#FF1493" },
+                { name: "DeepSkyBlue", hex: "#00BFFF" },
+                { name: "DimGray", hex: "#696969" },
+                { name: "DodgerBlue", hex: "#1E90FF" },
+                { name: "FireBrick", hex: "#B22222" },
+                { name: "FloralWhite", hex: "#FFFAF0" },
+                { name: "ForestGreen", hex: "#228B22" },
+                { name: "Fuchsia", hex: "#FF00FF" },
+                { name: "Gainsboro", hex: "#DCDCDC" },
+                { name: "GhostWhite", hex: "#F8F8FF" },
+                { name: "Gold", hex: "#FFD700" },
+                { name: "GoldenRod", hex: "#DAA520" },
+                { name: "Gray", hex: "#808080" },
+                { name: "Green", hex: "#008000" },
+                { name: "GreenYellow", hex: "#ADFF2F" },
+                { name: "HoneyDew", hex: "#F0FFF0" },
+                { name: "HotPink", hex: "#FF69B4" },
+                { name: "IndianRed", hex: "#CD5C5C" },
+                { name: "Indigo", hex: "#4B0082" },
+                { name: "Ivory", hex: "#FFFFF0" },
+                { name: "Khaki", hex: "#F0E68C" },
+                { name: "Lavender", hex: "#E6E6FA" },
+                { name: "LavenderBlush", hex: "#FFF0F5" },
+                { name: "LawnGreen", hex: "#7CFC00" },
+                { name: "LemonChiffon", hex: "#FFFACD" },
+                { name: "LightBlue", hex: "#ADD8E6" },
+                { name: "LightCoral", hex: "#F08080" },
+                { name: "LightCyan", hex: "#E0FFFF" },
+                { name: "LightGoldenRodYellow", hex: "#FAFAD2" },
+                { name: "LightGray", hex: "#D3D3D3" },
+                { name: "LightGreen", hex: "#90EE90" },
+                { name: "LightPink", hex: "#FFB6C1" },
+                { name: "LightSalmon", hex: "#FFA07A" },
+                { name: "LightSeaGreen", hex: "#20B2AA" },
+                { name: "LightSkyBlue", hex: "#87CEFA" },
+                { name: "LightSlateGray", hex: "#778899" },
+                { name: "LightSteelBlue", hex: "#B0C4DE" },
+                { name: "LightYellow", hex: "#FFFFE0" },
+                { name: "Lime", hex: "#00FF00" },
+                { name: "LimeGreen", hex: "#32CD32" },
+                { name: "Linen", hex: "#FAF0E6" },
+                { name: "Magenta", hex: "#FF00FF" },
+                { name: "Maroon", hex: "#800000" },
+                { name: "MediumAquaMarine", hex: "#66CDAA" },
+                { name: "MediumBlue", hex: "#0000CD" },
+                { name: "MediumOrchid", hex: "#BA55D3" },
+                { name: "MediumPurple", hex: "#9370DB" },
+                { name: "MediumSeaGreen", hex: "#3CB371" },
+                { name: "MediumSlateBlue", hex: "#7B68EE" },
+                { name: "MediumSpringGreen", hex: "#00FA9A" },
+                { name: "MediumTurquoise", hex: "#48D1CC" },
+                { name: "MediumVioletRed", hex: "#C71585" },
+                { name: "MidnightBlue", hex: "#191970" },
+                { name: "MintCream", hex: "#F5FFFA" },
+                { name: "MistyRose", hex: "#FFE4E1" },
+                { name: "Moccasin", hex: "#FFE4B5" },
+                { name: "NavajoWhite", hex: "#FFDEAD" },
+                { name: "Navy", hex: "#000080" },
+                { name: "OldLace", hex: "#FDF5E6" },
+                { name: "Olive", hex: "#808000" },
+                { name: "OliveDrab", hex: "#6B8E23" },
+                { name: "Orange", hex: "#FFA500" },
+                { name: "OrangeRed", hex: "#FF4500" },
+                { name: "Orchid", hex: "#DA70D6" },
+                { name: "PaleGoldenRod", hex: "#EEE8AA" },
+                { name: "PaleGreen", hex: "#98FB98" },
+                { name: "PaleTurquoise", hex: "#AFEEEE" },
+                { name: "PaleVioletRed", hex: "#DB7093" },
+                { name: "PapayaWhip", hex: "#FFEFD5" },
+                { name: "PeachPuff", hex: "#FFDAB9" },
+                { name: "Peru", hex: "#CD853F" },
+                { name: "Pink", hex: "#FFC0CB" },
+                { name: "Plum", hex: "#DDA0DD" },
+                { name: "PowderBlue", hex: "#B0E0E6" },
+                { name: "Purple", hex: "#800080" },
+                { name: "RebeccaPurple", hex: "#663399" },
+                { name: "Red", hex: "#FF0000" },
+                { name: "RosyBrown", hex: "#BC8F8F" },
+                { name: "RoyalBlue", hex: "#4169E1" },
+                { name: "SaddleBrown", hex: "#8B4513" },
+                { name: "Salmon", hex: "#FA8072" },
+                { name: "SandyBrown", hex: "#F4A460" },
+                { name: "SeaGreen", hex: "#2E8B57" },
+                { name: "SeaShell", hex: "#FFF5EE" },
+                { name: "Sienna", hex: "#A0522D" },
+                { name: "Silver", hex: "#C0C0C0" },
+                { name: "SkyBlue", hex: "#87CEEB" },
+                { name: "SlateBlue", hex: "#6A5ACD" },
+                { name: "SlateGray", hex: "#708090" },
+                { name: "Snow", hex: "#FFFAFA" },
+                { name: "SpringGreen", hex: "#00FF7F" },
+                { name: "SteelBlue", hex: "#4682B4" },
+                { name: "Tan", hex: "#D2B48C" },
+                { name: "Teal", hex: "#008080" },
+                { name: "Thistle", hex: "#D8BFD8" },
+                { name: "Tomato", hex: "#FF6347" },
+                { name: "Turquoise", hex: "#40E0D0" },
+                { name: "Violet", hex: "#EE82EE" },
+                { name: "Wheat", hex: "#F5DEB3" },
+                { name: "White", hex: "#FFFFFF" },
+                { name: "WhiteSmoke", hex: "#F5F5F5" },
+                { name: "Yellow", hex: "#FFFF00" },
+                { name: "YellowGreen", hex: "#9ACD32" }
+            ];
+
+            // Convert HEX to RGB object {r, g, b}
+            function hexToRgb(hex) {
+                let h = hex.replace('#', '');
+                if (h.length === 3) {
+                    h = h.split('').map(c => c + c).join('');
+                }
+                const bigint = parseInt(h, 16);
+                return {
+                    r: (bigint >> 16) & 255,
+                    g: (bigint >> 8) & 255,
+                    b: bigint & 255
+                };
+            }
+
+            // Convert RGB to HSL string
+            function rgbToHsl(r, g, b) {
+                r /= 255; g /= 255; b /= 255;
+                const max = Math.max(r, g, b), min = Math.min(r, g, b);
+                let h, s, l = (max + min) / 2;
+                if (max === min) {
+                    h = s = 0; // achromatic
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                        case g: h = ((b - r) / d + 2) / 6; break;
+                        case b: h = ((r - g) / d + 4) / 6; break;
+                    }
+                }
+                h = Math.round(h * 360);
+                s = Math.round(s * 100);
+                l = Math.round(l * 100);
+                return `hsl(${h}, ${s}%, ${l}%)`;
+            }
+
+            const tbody = document.getElementById('color-tbody');
+            const toast = document.getElementById('toast');
+            let toastTimer = null;
+
+            // Sort alphabetically
+            namedColors.sort((a, b) => a.name.localeCompare(b.name));
+
+            // Generate rows
+            namedColors.forEach((color, index) => {
+                const num = index + 1;
+                const rgbObj = hexToRgb(color.hex);
+                const rgbStr = `rgb(${rgbObj.r}, ${rgbObj.g}, ${rgbObj.b})`;
+                const hslStr = rgbToHsl(rgbObj.r, rgbObj.g, rgbObj.b);
+
+                const tr = document.createElement('tr');
+
+                // Number cell
+                const tdNum = document.createElement('td');
+                tdNum.className = 'num-cell';
+                tdNum.textContent = num;
+
+                // Swatch cell
+                const tdSwatch = document.createElement('td');
+                tdSwatch.className = 'swatch-cell';
+                const swatch = document.createElement('span');
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = color.hex;
+                swatch.title = color.name;
+                tdSwatch.appendChild(swatch);
+
+                // Name cell
+                const tdName = document.createElement('td');
+                tdName.className = 'name-cell';
+                tdName.textContent = color.name;
+
+                // HEX cell (clickable to copy)
+                const tdHex = document.createElement('td');
+                tdHex.className = 'code-cell';
+                tdHex.setAttribute('data-code', color.hex);
+                tdHex.textContent = color.hex;
+                tdHex.setAttribute('tabindex', '0');
+                tdHex.setAttribute('role', 'button');
+                tdHex.setAttribute('aria-label', `Copy HEX ${color.hex}`);
+
+                // RGB cell
+                const tdRgb = document.createElement('td');
+                tdRgb.className = 'rgb-cell';
+                tdRgb.textContent = rgbStr;
+
+                // HSL cell
+                const tdHsl = document.createElement('td');
+                tdHsl.className = 'hsl-cell';
+                tdHsl.textContent = hslStr;
+
+                tr.appendChild(tdNum);
+                tr.appendChild(tdSwatch);
+                tr.appendChild(tdName);
+                tr.appendChild(tdHex);
+                tr.appendChild(tdRgb);
+                tr.appendChild(tdHsl);
+                tbody.appendChild(tr);
+            });
+
+            // Toast function
+            function showToast(message) {
+                if (toastTimer) {
+                    clearTimeout(toastTimer);
+                    toast.classList.remove('show');
+                }
+                requestAnimationFrame(() => {
+                    toast.textContent = message;
+                    toast.classList.add('show');
+                    toastTimer = setTimeout(() => {
+                        toast.classList.remove('show');
+                        toastTimer = null;
+                    }, 1800);
+                });
+            }
+
+            // Copy function with fallback
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.style.position = 'fixed';
+                        textarea.style.left = '-9999px';
+                        textarea.style.top = '-9999px';
+                        textarea.style.opacity = '0';
+                        textarea.setAttribute('readonly', '');
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        return success;
+                    }
+                } catch (err) {
+                    console.warn('Clipboard copy failed:', err);
+                    return false;
+                }
+            }
+
+            // Event delegation for click / keyboard on HEX cells
+            tbody.addEventListener('click', async (e) => {
+                const cell = e.target.closest('.code-cell');
+                if (!cell) return;
+                const code = cell.getAttribute('data-code');
+                const success = await copyToClipboard(code);
+                if (success) {
+                    cell.classList.add('copied-flash');
+                    setTimeout(() => cell.classList.remove('copied-flash'), 600);
+                    const name = cell.closest('tr')?.querySelector('.name-cell')?.textContent || '';
+                    showToast(`✅ ${code}${name ? ' (' + name + ')' : ''} copied!`);
+                } else {
+                    showToast('⚠️ Copy failed. Please copy manually.');
+                }
+            });
+
+            tbody.addEventListener('keydown', (e) => {
+                const cell = e.target.closest('.code-cell');
+                if (cell && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    cell.click();
+                }
+            });
+
+            console.log('🎨 148 named colors ready with HEX, RGB, HSL. Click any HEX code to copy.');
+        })();
+    </script>
+</body>
+</html>

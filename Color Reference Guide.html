@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Reference Table - HEX Codes, English Names & Swatches</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --border: #e2e8f0;
+            --accent-primary: #4a6cf7;
+            --accent-famous: #e67e22;
+            --accent-common: #27ae60;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.10), 0 3px 10px rgba(0, 0, 0, 0.05);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf3 30%, #f5f3f0 60%, #eef2f7 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 16px 50px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ---- Header ---- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 10px 10px;
+        }
+
+        .page-header .icon-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-header .swatch-icon {
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+            animation: hueRotate 8s linear infinite;
+        }
+
+        @keyframes hueRotate {
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #1a202c;
+            margin: 0;
+        }
+
+        .page-header .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* ---- Container ---- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* ---- Section Card ---- */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: box-shadow var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .section-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 22px;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .section-card.primary .section-header::before {
+            background: var(--accent-primary);
+        }
+        .section-card.famous .section-header::before {
+            background: var(--accent-famous);
+        }
+        .section-card.common .section-header::before {
+            background: var(--accent-common);
+        }
+
+        .section-header .section-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin: 0;
+        }
+
+        .section-header .badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #fff;
+            flex-shrink: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .section-card.primary .badge {
+            background: var(--accent-primary);
+        }
+        .section-card.famous .badge {
+            background: var(--accent-famous);
+        }
+        .section-card.common .badge {
+            background: var(--accent-common);
+        }
+
+        /* ---- Table Wrapper ---- */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 8px 8px;
+        }
+
+        /* ---- Table ---- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            min-width: 500px;
+        }
+
+        thead th {
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 14px 16px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 2px solid #dde4ee;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        thead th:first-child {
+            text-align: center;
+            width: 90px;
+        }
+
+        thead th:nth-child(2) {
+            text-align: left;
+        }
+        thead th:nth-child(3) {
+            text-align: left;
+            width: 120px;
+        }
+
+        tbody td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+            transition: background var(--transition);
+        }
+
+        tbody tr {
+            transition: all var(--transition);
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+            transform: translateX(2px);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ---- Swatch Cell ---- */
+        .swatch-cell {
+            text-align: center;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 42px;
+            height: 28px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 0, 0, 0.13);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            transition: all var(--transition);
+            vertical-align: middle;
+            position: relative;
+            cursor: default;
+        }
+
+        tbody tr:hover .color-swatch {
+            transform: scale(1.12);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        /* ---- Name Cell ---- */
+        .name-cell {
+            text-align: left;
+            font-weight: 600;
+            color: #1e293b;
+            letter-spacing: 0.2px;
+        }
+
+        /* ---- Code Cell ---- */
+        .code-cell {
+            text-align: left;
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', 'Monaco', 'Fira Code', 'Courier New', monospace;
+            font-weight: 500;
+            color: #334155;
+            letter-spacing: 0.4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            user-select: all;
+            position: relative;
+        }
+
+        .code-cell:hover {
+            color: #0f172a;
+            background: #f1f5f9;
+            border-radius: 4px;
+            padding: 6px 10px;
+            margin: -6px -10px;
+        }
+
+        .code-cell:active {
+            transform: scale(0.96);
+            color: #000;
+        }
+
+        /* ---- Zebra Striping ---- */
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+        tbody tr:nth-child(even):hover {
+            background: #f1f5f9;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .page-header .swatch-icon {
+                width: 32px;
+                height: 32px;
+            }
+            .section-header {
+                padding: 14px 14px;
+                gap: 8px;
+            }
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+            .section-header .badge {
+                font-size: 0.7rem;
+                padding: 3px 10px;
+            }
+            table {
+                font-size: 0.85rem;
+                min-width: 420px;
+            }
+            thead th,
+            tbody td {
+                padding: 8px 10px;
+            }
+            .color-swatch {
+                width: 34px;
+                height: 22px;
+                border-radius: 4px;
+            }
+            .code-cell {
+                font-size: 0.78rem;
+            }
+            .container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 6px 30px;
+            }
+            .page-header {
+                margin-bottom: 20px;
+            }
+            .page-header h1 {
+                font-size: 1.25rem;
+            }
+            .section-header {
+                padding: 10px 10px;
+                gap: 6px;
+            }
+            .section-header h2 {
+                font-size: 0.95rem;
+            }
+            .section-header .badge {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+            }
+            table {
+                font-size: 0.78rem;
+                min-width: 360px;
+            }
+            thead th,
+            tbody td {
+                padding: 6px 8px;
+            }
+            .color-swatch {
+                width: 28px;
+                height: 18px;
+                border-radius: 3px;
+            }
+            .code-cell {
+                font-size: 0.7rem;
+            }
+            .name-cell {
+                font-size: 0.78rem;
+            }
+            thead th {
+                font-size: 0.7rem;
+                letter-spacing: 0.3px;
+            }
+        }
+
+        /* ---- Print Styles ---- */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+                font-size: 11pt;
+            }
+            .section-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                break-inside: avoid;
+                margin-bottom: 18px;
+                border-radius: 0;
+            }
+            .section-header::before {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .color-swatch {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .page-header .swatch-icon {
+                animation: none;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            tbody tr:hover {
+                background: inherit;
+                transform: none;
+            }
+            tbody tr:hover .color-swatch {
+                transform: none;
+            }
+            .code-cell:hover {
+                background: inherit;
+                padding: inherit;
+                margin: inherit;
+            }
+        }
+
+        /* ---- Tooltip for copy ---- */
+        .code-cell::after {
+            content: 'Click to copy';
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #1e293b;
+            color: #fff;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.25s ease;
+            z-index: 10;
+            letter-spacing: 0.2px;
+        }
+
+        .code-cell:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .copied-flash {
+            animation: flashGreen 0.6s ease-out;
+        }
+
+        @keyframes flashGreen {
+            0% {
+                background-color: #d4edda;
+                color: #155724;
+            }
+            100% {
+                background-color: transparent;
+                color: #334155;
+            }
+        }
+
+        /* ---- Toast notification ---- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            letter-spacing: 0.3px;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="page-header">
+        <div class="icon-row">
+            <span class="swatch-icon" title="Color Spectrum"></span>
+            <h1>Color Reference Guide</h1>
+        </div>
+        <p class="subtitle">Complete table of HEX codes, English names, and visual swatches</p>
+    </header>
+
+    <!-- ==================== MAIN CONTAINER ==================== -->
+    <div class="container">
+
+        <!-- ============ SECTION 1: PRIMARY COLORS ============ -->
+        <div class="section-card primary">
+            <div class="section-header">
+                <span class="section-icon">🎨</span>
+                <h2>Primary Colors</h2>
+                <span class="badge">8 colors</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Swatch</th>
+                            <th>Color Name</th>
+                            <th>HEX Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#FF0000;" title="Red"></span></td>
+                            <td class="name-cell">Red</td>
+                            <td class="code-cell" data-code="#FF0000">#FF0000</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#00FF00;" title="Green (Lime)"></span></td>
+                            <td class="name-cell">Green <small style="color:#888;">(Lime)</small></td>
+                            <td class="code-cell" data-code="#00FF00">#00FF00</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#0000FF;" title="Blue"></span></td>
+                            <td class="name-cell">Blue</td>
+                            <td class="code-cell" data-code="#0000FF">#0000FF</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#00FFFF;" title="Cyan"></span></td>
+                            <td class="name-cell">Cyan</td>
+                            <td class="code-cell" data-code="#00FFFF">#00FFFF</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#FF00FF;" title="Magenta"></span></td>
+                            <td class="name-cell">Magenta</td>
+                            <td class="code-cell" data-code="#FF00FF">#FF00FF</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFF00;" title="Yellow"></span></td>
+                            <td class="name-cell">Yellow</td>
+                            <td class="code-cell" data-code="#FFFF00">#FFFF00</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#000000;" title="Black"></span></td>
+                            <td class="name-cell">Black</td>
+                            <td class="code-cell" data-code="#000000">#000000</td>
+                        </tr>
+                        <tr>
+                            <td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFFFF;" title="White"></span></td>
+                            <td class="name-cell">White</td>
+                            <td class="code-cell" data-code="#FFFFFF">#FFFFFF</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ============ SECTION 2: FAMOUS COLORS ============ -->
+        <div class="section-card famous">
+            <div class="section-header">
+                <span class="section-icon">⭐</span>
+                <h2>Famous Colors</h2>
+                <span class="badge">24 colors</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Swatch</th>
+                            <th>Color Name</th>
+                            <th>HEX Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFA500;" title="Orange"></span></td><td class="name-cell">Orange</td><td class="code-cell" data-code="#FFA500">#FFA500</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#800080;" title="Purple"></span></td><td class="name-cell">Purple</td><td class="code-cell" data-code="#800080">#800080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFC0CB;" title="Pink"></span></td><td class="name-cell">Pink</td><td class="code-cell" data-code="#FFC0CB">#FFC0CB</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#A52A2A;" title="Brown"></span></td><td class="name-cell">Brown</td><td class="code-cell" data-code="#A52A2A">#A52A2A</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#808080;" title="Gray"></span></td><td class="name-cell">Gray</td><td class="code-cell" data-code="#808080">#808080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#000080;" title="Navy"></span></td><td class="name-cell">Navy</td><td class="code-cell" data-code="#000080">#000080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#008080;" title="Teal"></span></td><td class="name-cell">Teal</td><td class="code-cell" data-code="#008080">#008080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#800000;" title="Maroon"></span></td><td class="name-cell">Maroon</td><td class="code-cell" data-code="#800000">#800000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#808000;" title="Olive"></span></td><td class="name-cell">Olive</td><td class="code-cell" data-code="#808000">#808000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF7F50;" title="Coral"></span></td><td class="name-cell">Coral</td><td class="code-cell" data-code="#FF7F50">#FF7F50</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFD700;" title="Gold"></span></td><td class="name-cell">Gold</td><td class="code-cell" data-code="#FFD700">#FFD700</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#C0C0C0;" title="Silver"></span></td><td class="name-cell">Silver</td><td class="code-cell" data-code="#C0C0C0">#C0C0C0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#4B0082;" title="Indigo"></span></td><td class="name-cell">Indigo</td><td class="code-cell" data-code="#4B0082">#4B0082</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#8A2BE2;" title="Violet"></span></td><td class="name-cell">Violet</td><td class="code-cell" data-code="#8A2BE2">#8A2BE2</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#40E0D0;" title="Turquoise"></span></td><td class="name-cell">Turquoise</td><td class="code-cell" data-code="#40E0D0">#40E0D0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DC143C;" title="Crimson"></span></td><td class="name-cell">Crimson</td><td class="code-cell" data-code="#DC143C">#DC143C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F5F5DC;" title="Beige"></span></td><td class="name-cell">Beige</td><td class="code-cell" data-code="#F5F5DC">#F5F5DC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#E6E6FA;" title="Lavender"></span></td><td class="name-cell">Lavender</td><td class="code-cell" data-code="#E6E6FA">#E6E6FA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F0E68C;" title="Khaki"></span></td><td class="name-cell">Khaki</td><td class="code-cell" data-code="#F0E68C">#F0E68C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FA8072;" title="Salmon"></span></td><td class="name-cell">Salmon</td><td class="code-cell" data-code="#FA8072">#FA8072</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#D2691E;" title="Chocolate"></span></td><td class="name-cell">Chocolate</td><td class="code-cell" data-code="#D2691E">#D2691E</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DDA0DD;" title="Plum"></span></td><td class="name-cell">Plum</td><td class="code-cell" data-code="#DDA0DD">#DDA0DD</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#D2B48C;" title="Tan"></span></td><td class="name-cell">Tan</td><td class="code-cell" data-code="#D2B48C">#D2B48C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFDAB9;" title="Peach"></span></td><td class="name-cell">Peach</td><td class="code-cell" data-code="#FFDAB9">#FFDAB9</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ============ SECTION 3: COMMONLY USED NAMED COLORS (100) ============ -->
+        <div class="section-card common">
+            <div class="section-header">
+                <span class="section-icon">💼</span>
+                <h2>Commonly Used Named Colors</h2>
+                <span class="badge">100 colors</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Swatch</th>
+                            <th>Color Name</th>
+                            <th>HEX Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F0F8FF;" title="AliceBlue"></span></td><td class="name-cell">AliceBlue</td><td class="code-cell" data-code="#F0F8FF">#F0F8FF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FAEBD7;" title="AntiqueWhite"></span></td><td class="name-cell">AntiqueWhite</td><td class="code-cell" data-code="#FAEBD7">#FAEBD7</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#7FFFD4;" title="Aquamarine"></span></td><td class="name-cell">Aquamarine</td><td class="code-cell" data-code="#7FFFD4">#7FFFD4</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F0FFFF;" title="Azure"></span></td><td class="name-cell">Azure</td><td class="code-cell" data-code="#F0FFFF">#F0FFFF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F5F5DC;" title="Beige"></span></td><td class="name-cell">Beige</td><td class="code-cell" data-code="#F5F5DC">#F5F5DC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFE4C4;" title="Bisque"></span></td><td class="name-cell">Bisque</td><td class="code-cell" data-code="#FFE4C4">#FFE4C4</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFEBCD;" title="BlanchedAlmond"></span></td><td class="name-cell">BlanchedAlmond</td><td class="code-cell" data-code="#FFEBCD">#FFEBCD</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#8A2BE2;" title="BlueViolet"></span></td><td class="name-cell">BlueViolet</td><td class="code-cell" data-code="#8A2BE2">#8A2BE2</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#A52A2A;" title="Brown"></span></td><td class="name-cell">Brown</td><td class="code-cell" data-code="#A52A2A">#A52A2A</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DEB887;" title="BurlyWood"></span></td><td class="name-cell">BurlyWood</td><td class="code-cell" data-code="#DEB887">#DEB887</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#5F9EA0;" title="CadetBlue"></span></td><td class="name-cell">CadetBlue</td><td class="code-cell" data-code="#5F9EA0">#5F9EA0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#7FFF00;" title="Chartreuse"></span></td><td class="name-cell">Chartreuse</td><td class="code-cell" data-code="#7FFF00">#7FFF00</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#D2691E;" title="Chocolate"></span></td><td class="name-cell">Chocolate</td><td class="code-cell" data-code="#D2691E">#D2691E</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF7F50;" title="Coral"></span></td><td class="name-cell">Coral</td><td class="code-cell" data-code="#FF7F50">#FF7F50</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#6495ED;" title="CornflowerBlue"></span></td><td class="name-cell">CornflowerBlue</td><td class="code-cell" data-code="#6495ED">#6495ED</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFF8DC;" title="Cornsilk"></span></td><td class="name-cell">Cornsilk</td><td class="code-cell" data-code="#FFF8DC">#FFF8DC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DC143C;" title="Crimson"></span></td><td class="name-cell">Crimson</td><td class="code-cell" data-code="#DC143C">#DC143C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00FFFF;" title="Cyan"></span></td><td class="name-cell">Cyan</td><td class="code-cell" data-code="#00FFFF">#00FFFF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00008B;" title="DarkBlue"></span></td><td class="name-cell">DarkBlue</td><td class="code-cell" data-code="#00008B">#00008B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#008B8B;" title="DarkCyan"></span></td><td class="name-cell">DarkCyan</td><td class="code-cell" data-code="#008B8B">#008B8B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#B8860B;" title="DarkGoldenRod"></span></td><td class="name-cell">DarkGoldenRod</td><td class="code-cell" data-code="#B8860B">#B8860B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#A9A9A9;" title="DarkGray"></span></td><td class="name-cell">DarkGray</td><td class="code-cell" data-code="#A9A9A9">#A9A9A9</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#006400;" title="DarkGreen"></span></td><td class="name-cell">DarkGreen</td><td class="code-cell" data-code="#006400">#006400</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#BDB76B;" title="DarkKhaki"></span></td><td class="name-cell">DarkKhaki</td><td class="code-cell" data-code="#BDB76B">#BDB76B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#8B008B;" title="DarkMagenta"></span></td><td class="name-cell">DarkMagenta</td><td class="code-cell" data-code="#8B008B">#8B008B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#556B2F;" title="DarkOliveGreen"></span></td><td class="name-cell">DarkOliveGreen</td><td class="code-cell" data-code="#556B2F">#556B2F</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF8C00;" title="DarkOrange"></span></td><td class="name-cell">DarkOrange</td><td class="code-cell" data-code="#FF8C00">#FF8C00</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#9932CC;" title="DarkOrchid"></span></td><td class="name-cell">DarkOrchid</td><td class="code-cell" data-code="#9932CC">#9932CC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#8B0000;" title="DarkRed"></span></td><td class="name-cell">DarkRed</td><td class="code-cell" data-code="#8B0000">#8B0000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#E9967A;" title="DarkSalmon"></span></td><td class="name-cell">DarkSalmon</td><td class="code-cell" data-code="#E9967A">#E9967A</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#8FBC8F;" title="DarkSeaGreen"></span></td><td class="name-cell">DarkSeaGreen</td><td class="code-cell" data-code="#8FBC8F">#8FBC8F</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#483D8B;" title="DarkSlateBlue"></span></td><td class="name-cell">DarkSlateBlue</td><td class="code-cell" data-code="#483D8B">#483D8B</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#2F4F4F;" title="DarkSlateGray"></span></td><td class="name-cell">DarkSlateGray</td><td class="code-cell" data-code="#2F4F4F">#2F4F4F</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00CED1;" title="DarkTurquoise"></span></td><td class="name-cell">DarkTurquoise</td><td class="code-cell" data-code="#00CED1">#00CED1</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#9400D3;" title="DarkViolet"></span></td><td class="name-cell">DarkViolet</td><td class="code-cell" data-code="#9400D3">#9400D3</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF1493;" title="DeepPink"></span></td><td class="name-cell">DeepPink</td><td class="code-cell" data-code="#FF1493">#FF1493</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00BFFF;" title="DeepSkyBlue"></span></td><td class="name-cell">DeepSkyBlue</td><td class="code-cell" data-code="#00BFFF">#00BFFF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#696969;" title="DimGray"></span></td><td class="name-cell">DimGray</td><td class="code-cell" data-code="#696969">#696969</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#1E90FF;" title="DodgerBlue"></span></td><td class="name-cell">DodgerBlue</td><td class="code-cell" data-code="#1E90FF">#1E90FF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#B22222;" title="FireBrick"></span></td><td class="name-cell">FireBrick</td><td class="code-cell" data-code="#B22222">#B22222</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFAF0;" title="FloralWhite"></span></td><td class="name-cell">FloralWhite</td><td class="code-cell" data-code="#FFFAF0">#FFFAF0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#228B22;" title="ForestGreen"></span></td><td class="name-cell">ForestGreen</td><td class="code-cell" data-code="#228B22">#228B22</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF00FF;" title="Fuchsia"></span></td><td class="name-cell">Fuchsia</td><td class="code-cell" data-code="#FF00FF">#FF00FF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DCDCDC;" title="Gainsboro"></span></td><td class="name-cell">Gainsboro</td><td class="code-cell" data-code="#DCDCDC">#DCDCDC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F8F8FF;" title="GhostWhite"></span></td><td class="name-cell">GhostWhite</td><td class="code-cell" data-code="#F8F8FF">#F8F8FF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFD700;" title="Gold"></span></td><td class="name-cell">Gold</td><td class="code-cell" data-code="#FFD700">#FFD700</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DAA520;" title="GoldenRod"></span></td><td class="name-cell">GoldenRod</td><td class="code-cell" data-code="#DAA520">#DAA520</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#808080;" title="Gray"></span></td><td class="name-cell">Gray</td><td class="code-cell" data-code="#808080">#808080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#008000;" title="Green"></span></td><td class="name-cell">Green</td><td class="code-cell" data-code="#008000">#008000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#ADFF2F;" title="GreenYellow"></span></td><td class="name-cell">GreenYellow</td><td class="code-cell" data-code="#ADFF2F">#ADFF2F</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F0FFF0;" title="HoneyDew"></span></td><td class="name-cell">HoneyDew</td><td class="code-cell" data-code="#F0FFF0">#F0FFF0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF69B4;" title="HotPink"></span></td><td class="name-cell">HotPink</td><td class="code-cell" data-code="#FF69B4">#FF69B4</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#CD5C5C;" title="IndianRed"></span></td><td class="name-cell">IndianRed</td><td class="code-cell" data-code="#CD5C5C">#CD5C5C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#4B0082;" title="Indigo"></span></td><td class="name-cell">Indigo</td><td class="code-cell" data-code="#4B0082">#4B0082</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFFF0;" title="Ivory"></span></td><td class="name-cell">Ivory</td><td class="code-cell" data-code="#FFFFF0">#FFFFF0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F0E68C;" title="Khaki"></span></td><td class="name-cell">Khaki</td><td class="code-cell" data-code="#F0E68C">#F0E68C</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#E6E6FA;" title="Lavender"></span></td><td class="name-cell">Lavender</td><td class="code-cell" data-code="#E6E6FA">#E6E6FA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFF0F5;" title="LavenderBlush"></span></td><td class="name-cell">LavenderBlush</td><td class="code-cell" data-code="#FFF0F5">#FFF0F5</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#7CFC00;" title="LawnGreen"></span></td><td class="name-cell">LawnGreen</td><td class="code-cell" data-code="#7CFC00">#7CFC00</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFACD;" title="LemonChiffon"></span></td><td class="name-cell">LemonChiffon</td><td class="code-cell" data-code="#FFFACD">#FFFACD</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#ADD8E6;" title="LightBlue"></span></td><td class="name-cell">LightBlue</td><td class="code-cell" data-code="#ADD8E6">#ADD8E6</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F08080;" title="LightCoral"></span></td><td class="name-cell">LightCoral</td><td class="code-cell" data-code="#F08080">#F08080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#E0FFFF;" title="LightCyan"></span></td><td class="name-cell">LightCyan</td><td class="code-cell" data-code="#E0FFFF">#E0FFFF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FAFAD2;" title="LightGoldenRodYellow"></span></td><td class="name-cell">LightGoldenRodYellow</td><td class="code-cell" data-code="#FAFAD2">#FAFAD2</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#D3D3D3;" title="LightGray"></span></td><td class="name-cell">LightGray</td><td class="code-cell" data-code="#D3D3D3">#D3D3D3</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#90EE90;" title="LightGreen"></span></td><td class="name-cell">LightGreen</td><td class="code-cell" data-code="#90EE90">#90EE90</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFB6C1;" title="LightPink"></span></td><td class="name-cell">LightPink</td><td class="code-cell" data-code="#FFB6C1">#FFB6C1</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFA07A;" title="LightSalmon"></span></td><td class="name-cell">LightSalmon</td><td class="code-cell" data-code="#FFA07A">#FFA07A</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#20B2AA;" title="LightSeaGreen"></span></td><td class="name-cell">LightSeaGreen</td><td class="code-cell" data-code="#20B2AA">#20B2AA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#87CEFA;" title="LightSkyBlue"></span></td><td class="name-cell">LightSkyBlue</td><td class="code-cell" data-code="#87CEFA">#87CEFA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#778899;" title="LightSlateGray"></span></td><td class="name-cell">LightSlateGray</td><td class="code-cell" data-code="#778899">#778899</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#B0C4DE;" title="LightSteelBlue"></span></td><td class="name-cell">LightSteelBlue</td><td class="code-cell" data-code="#B0C4DE">#B0C4DE</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFFFE0;" title="LightYellow"></span></td><td class="name-cell">LightYellow</td><td class="code-cell" data-code="#FFFFE0">#FFFFE0</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00FF00;" title="Lime"></span></td><td class="name-cell">Lime</td><td class="code-cell" data-code="#00FF00">#00FF00</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#32CD32;" title="LimeGreen"></span></td><td class="name-cell">LimeGreen</td><td class="code-cell" data-code="#32CD32">#32CD32</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FAF0E6;" title="Linen"></span></td><td class="name-cell">Linen</td><td class="code-cell" data-code="#FAF0E6">#FAF0E6</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF00FF;" title="Magenta"></span></td><td class="name-cell">Magenta</td><td class="code-cell" data-code="#FF00FF">#FF00FF</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#800000;" title="Maroon"></span></td><td class="name-cell">Maroon</td><td class="code-cell" data-code="#800000">#800000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#66CDAA;" title="MediumAquaMarine"></span></td><td class="name-cell">MediumAquaMarine</td><td class="code-cell" data-code="#66CDAA">#66CDAA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#0000CD;" title="MediumBlue"></span></td><td class="name-cell">MediumBlue</td><td class="code-cell" data-code="#0000CD">#0000CD</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#BA55D3;" title="MediumOrchid"></span></td><td class="name-cell">MediumOrchid</td><td class="code-cell" data-code="#BA55D3">#BA55D3</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#9370DB;" title="MediumPurple"></span></td><td class="name-cell">MediumPurple</td><td class="code-cell" data-code="#9370DB">#9370DB</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#3CB371;" title="MediumSeaGreen"></span></td><td class="name-cell">MediumSeaGreen</td><td class="code-cell" data-code="#3CB371">#3CB371</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#7B68EE;" title="MediumSlateBlue"></span></td><td class="name-cell">MediumSlateBlue</td><td class="code-cell" data-code="#7B68EE">#7B68EE</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#00FA9A;" title="MediumSpringGreen"></span></td><td class="name-cell">MediumSpringGreen</td><td class="code-cell" data-code="#00FA9A">#00FA9A</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#48D1CC;" title="MediumTurquoise"></span></td><td class="name-cell">MediumTurquoise</td><td class="code-cell" data-code="#48D1CC">#48D1CC</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#C71585;" title="MediumVioletRed"></span></td><td class="name-cell">MediumVioletRed</td><td class="code-cell" data-code="#C71585">#C71585</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#191970;" title="MidnightBlue"></span></td><td class="name-cell">MidnightBlue</td><td class="code-cell" data-code="#191970">#191970</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#F5FFFA;" title="MintCream"></span></td><td class="name-cell">MintCream</td><td class="code-cell" data-code="#F5FFFA">#F5FFFA</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFE4E1;" title="MistyRose"></span></td><td class="name-cell">MistyRose</td><td class="code-cell" data-code="#FFE4E1">#FFE4E1</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFE4B5;" title="Moccasin"></span></td><td class="name-cell">Moccasin</td><td class="code-cell" data-code="#FFE4B5">#FFE4B5</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFDEAD;" title="NavajoWhite"></span></td><td class="name-cell">NavajoWhite</td><td class="code-cell" data-code="#FFDEAD">#FFDEAD</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#000080;" title="Navy"></span></td><td class="name-cell">Navy</td><td class="code-cell" data-code="#000080">#000080</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FDF5E6;" title="OldLace"></span></td><td class="name-cell">OldLace</td><td class="code-cell" data-code="#FDF5E6">#FDF5E6</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#808000;" title="Olive"></span></td><td class="name-cell">Olive</td><td class="code-cell" data-code="#808000">#808000</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#6B8E23;" title="OliveDrab"></span></td><td class="name-cell">OliveDrab</td><td class="code-cell" data-code="#6B8E23">#6B8E23</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FFA500;" title="Orange"></span></td><td class="name-cell">Orange</td><td class="code-cell" data-code="#FFA500">#FFA500</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#FF4500;" title="OrangeRed"></span></td><td class="name-cell">OrangeRed</td><td class="code-cell" data-code="#FF4500">#FF4500</td></tr>
+                        <tr><td class="swatch-cell"><span class="color-swatch" style="background-color:#DA70D6;" title="Orchid"></span></td><td class="name-cell">Orchid</td><td class="code-cell" data-code="#DA70D6">#DA70D6</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div><!-- /container -->
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast" id="toast">✅ HEX code copied!</div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        (function() {
+            const toast = document.getElementById('toast');
+            let toastTimer = null;
+
+            function showToast(message) {
+                if (toastTimer) {
+                    clearTimeout(toastTimer);
+                    toast.classList.remove('show');
+                }
+                requestAnimationFrame(() => {
+                    toast.textContent = message;
+                    toast.classList.add('show');
+                    toastTimer = setTimeout(() => {
+                        toast.classList.remove('show');
+                        toastTimer = null;
+                    }, 1800);
+                });
+            }
+
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.style.position = 'fixed';
+                        textarea.style.left = '-9999px';
+                        textarea.style.top = '-9999px';
+                        textarea.style.opacity = '0';
+                        textarea.style.pointerEvents = 'none';
+                        textarea.setAttribute('readonly', '');
+                        document.body.appendChild(textarea);
+                        textarea.focus();
+                        textarea.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        return success;
+                    }
+                } catch (err) {
+                    console.warn('Clipboard copy failed:', err);
+                    return false;
+                }
+            }
+
+            const codeCells = document.querySelectorAll('.code-cell');
+            codeCells.forEach(cell => {
+                cell.addEventListener('click', async function(e) {
+                    const code = this.getAttribute('data-code');
+                    if (!code) return;
+                    const success = await copyToClipboard(code);
+                    if (success) {
+                        this.classList.add('copied-flash');
+                        setTimeout(() => this.classList.remove('copied-flash'), 600);
+                        const colorName = this.closest('tr')?.querySelector('.name-cell')?.textContent?.trim() || '';
+                        showToast(`✅ ${code}${colorName ? ' (' + colorName + ')' : ''} copied!`);
+                    } else {
+                        showToast('⚠️ Copy failed. Please copy manually.');
+                    }
+                });
+                cell.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+                cell.setAttribute('tabindex', '0');
+                cell.setAttribute('role', 'button');
+                cell.setAttribute('aria-label', 'Click to copy HEX code ' + cell.getAttribute('data-code'));
+            });
+
+            console.log(
+                '🎨 Color Reference Guide ready! | %cClick any HEX code to copy%c | Total %c132 colors%c across three categories',
+                'color:#4a6cf7;font-weight:bold;', '', 'color:#e67e22;font-weight:bold;', ''
+            );
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palettes of 10 Major Websites – LinkedIn & More</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 24px 16px 60px;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+        header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .brand-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: box-shadow var(--transition), transform var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-card:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f172a;
+            flex-shrink: 0;
+        }
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .swatches-row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 12px 16px;
+            gap: 8px;
+        }
+
+        .color-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 4px 10px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: background var(--transition);
+            user-select: all;
+            flex: 1 1 auto;
+            min-width: 100px;
+        }
+        .color-chip:hover { background: #f1f5f9; }
+        .color-chip.copied { background: #d4edda; }
+
+        .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        .color-hex {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.8rem;
+            color: #334155;
+            letter-spacing: 0.3px;
+        }
+
+        .explanation {
+            padding: 0 16px 16px;
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 48px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.9rem; }
+            .brands-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Color Palettes of 10 High‑Traffic Websites</h1>
+            <p>Brand colors from LinkedIn, Google, Netflix, and more – with visual explanations</p>
+        </header>
+
+        <div class="brands-grid" id="brandsGrid"></div>
+
+        <footer>
+            <p>✨ Click any HEX code to copy it. Purposeful color choices build a strong visual identity.</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">✅ Color code copied!</div>
+
+    <script>
+        (function() {
+            const brands = [
+                {
+                    name: "LinkedIn",
+                    icon: "in",
+                    colors: [
+                        { hex: "#0A66C2", label: "LinkedIn Blue" },
+                        { hex: "#000000", label: "Black" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#057642", label: "Confirmation Green" },
+                        { hex: "#E6EEF6", label: "Light Blue" }
+                    ],
+                    explanation: "The deep blue symbolizes trust, professionalism, and networking. Green is used for notifications and a sense of success. The overall palette feels formal and dependable."
+                },
+                {
+                    name: "Facebook",
+                    icon: "f",
+                    colors: [
+                        { hex: "#1877F2", label: "Facebook Blue" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#000000", label: "Black" },
+                        { hex: "#42B72A", label: "Green" },
+                        { hex: "#E4E6EB", label: "Light Gray" }
+                    ],
+                    explanation: "The dominant blue conveys friendship and security. Green indicates online presence. The simple palette is extremely user‑friendly."
+                },
+                {
+                    name: "Instagram",
+                    icon: "📷",
+                    colors: [
+                        { hex: "#E4405F", label: "Red/Pink" },
+                        { hex: "#833AB4", label: "Purple" },
+                        { hex: "#5851DB", label: "Blue" },
+                        { hex: "#F77737", label: "Orange" },
+                        { hex: "#FFFFFF", label: "White" }
+                    ],
+                    explanation: "The vibrant gradient radiates creativity and youthful energy. A white background lets user content shine."
+                },
+                {
+                    name: "YouTube",
+                    icon: "▶",
+                    colors: [
+                        { hex: "#FF0000", label: "Red" },
+                        { hex: "#282828", label: "Black" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#F9F9F9", label: "Light Gray" },
+                        { hex: "#C4302B", label: "Dark Red" }
+                    ],
+                    explanation: "Red symbolizes excitement and urgency. The dark background makes video content pop and enhances the viewing experience."
+                },
+                {
+                    name: "Google",
+                    icon: "G",
+                    colors: [
+                        { hex: "#4285F4", label: "Blue" },
+                        { hex: "#DB4437", label: "Red" },
+                        { hex: "#F4B400", label: "Yellow" },
+                        { hex: "#0F9D58", label: "Green" },
+                        { hex: "#FFFFFF", label: "White" }
+                    ],
+                    explanation: "The four logo colors represent diversity and simplicity. White space improves clarity and accessibility."
+                },
+                {
+                    name: "Amazon",
+                    icon: "📦",
+                    colors: [
+                        { hex: "#232F3E", label: "Dark Navy" },
+                        { hex: "#FF9900", label: "Orange" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#131A22", label: "Black" },
+                        { hex: "#F2F2F2", label: "Gray" }
+                    ],
+                    explanation: "Navy builds trust and authority. Orange injects energy and drives calls to action. High contrast ensures excellent readability."
+                },
+                {
+                    name: "Netflix",
+                    icon: "N",
+                    colors: [
+                        { hex: "#E50914", label: "Netflix Red" },
+                        { hex: "#221F1F", label: "Black" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#F5F5F1", label: "Cream" },
+                        { hex: "#B81D24", label: "Dark Red" }
+                    ],
+                    explanation: "Bold red grabs attention and evokes entertainment excitement. The dark background creates a cinematic, immersive feel."
+                },
+                {
+                    name: "Spotify",
+                    icon: "🎵",
+                    colors: [
+                        { hex: "#1DB954", label: "Spotify Green" },
+                        { hex: "#191414", label: "Black" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#B3B3B3", label: "Gray" },
+                        { hex: "#2EBD59", label: "Light Green" }
+                    ],
+                    explanation: "The vibrant green represents growth, freshness, and music. A dark background with high energy keeps the listening experience focused and modern."
+                },
+                {
+                    name: "Wikipedia",
+                    icon: "W",
+                    colors: [
+                        { hex: "#3366CC", label: "Link Blue" },
+                        { hex: "#000000", label: "Body Text" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#F8F9FA", label: "Background Gray" },
+                        { hex: "#54595D", label: "Dark Gray" }
+                    ],
+                    explanation: "The minimal, neutral palette conveys knowledge and authority. Blue for links is standard and familiar. The focus is purely on readability."
+                },
+                {
+                    name: "X (formerly Twitter)",
+                    icon: "𝕏",
+                    colors: [
+                        { hex: "#000000", label: "Black" },
+                        { hex: "#FFFFFF", label: "White" },
+                        { hex: "#1D9BF0", label: "Blue" },
+                        { hex: "#E7E9EA", label: "Light Gray" },
+                        { hex: "#71767B", label: "Text Gray" }
+                    ],
+                    explanation: "The stark black‑and‑white contrast screams power and modernity. A touch of blue retains the familiarity and trust of the social platform."
+                }
+            ];
+
+            const grid = document.getElementById('brandsGrid');
+            const toast = document.getElementById('toast');
+            let toastTimer;
+
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+            }
+
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        return success;
+                    }
+                } catch (err) {
+                    return false;
+                }
+            }
+
+            brands.forEach(brand => {
+                const card = document.createElement('div');
+                card.className = 'brand-card';
+
+                // Header
+                const header = document.createElement('div');
+                header.className = 'card-header';
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'brand-icon';
+                iconSpan.textContent = brand.icon;
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'brand-name';
+                nameSpan.textContent = brand.name;
+                header.appendChild(iconSpan);
+                header.appendChild(nameSpan);
+
+                // Swatches
+                const swatchesRow = document.createElement('div');
+                swatchesRow.className = 'swatches-row';
+                brand.colors.forEach(c => {
+                    const chip = document.createElement('div');
+                    chip.className = 'color-chip';
+                    chip.setAttribute('data-hex', c.hex);
+                    const dot = document.createElement('div');
+                    dot.className = 'color-dot';
+                    dot.style.backgroundColor = c.hex;
+                    const hexSpan = document.createElement('span');
+                    hexSpan.className = 'color-hex';
+                    hexSpan.textContent = c.hex;
+                    chip.appendChild(dot);
+                    chip.appendChild(hexSpan);
+                    swatchesRow.appendChild(chip);
+                });
+
+                // Explanation
+                const explanation = document.createElement('div');
+                explanation.className = 'explanation';
+                explanation.textContent = brand.explanation;
+
+                card.appendChild(header);
+                card.appendChild(swatchesRow);
+                card.appendChild(explanation);
+                grid.appendChild(card);
+            });
+
+            // Copy handling
+            grid.addEventListener('click', async (e) => {
+                const chip = e.target.closest('.color-chip');
+                if (!chip) return;
+                const hex = chip.getAttribute('data-hex');
+                if (!hex) return;
+                const success = await copyToClipboard(hex);
+                if (success) {
+                    chip.classList.add('copied');
+                    setTimeout(() => chip.classList.remove('copied'), 600);
+                    showToast(`✅ ${hex} copied!`);
+                } else {
+                    showToast('⚠️ Copy failed');
+                }
+            });
+
+            console.log('🎨 Major brand color palettes ready. Click any hex code to copy.');
+        })();
+    </script>
+</body>
+</html>

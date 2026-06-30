@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Suggestions by Use Case – Portfolio, Store, Blog, News & More</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --accent: #6366f1;
+            --radius: 14px;
+            --shadow: 0 4px 14px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.04);
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px 16px 60px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 24px 10px 10px;
+        }
+        .page-header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+        .page-header .subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-top: 6px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .category-section { margin-bottom: 48px; }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .category-header .icon {
+            font-size: 2rem;
+        }
+        .category-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .palette-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: box-shadow var(--transition);
+        }
+        .palette-card:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+
+        .palette-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+        .palette-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .swatches {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .color-chip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1 1 0;
+            min-width: 55px;
+        }
+        .chip-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .chip-circle:hover { transform: scale(1.08); }
+        .chip-label {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.7rem;
+            color: #475569;
+            cursor: pointer;
+            user-select: all;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.15s;
+            text-align: center;
+            word-break: break-all;
+            max-width: 80px;
+        }
+        .chip-label:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .chip-label.copied {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 1.8rem; }
+            .category-header h2 { font-size: 1.4rem; }
+            .palette-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <h1>🎨 Smart Color Palettes</h1>
+            <p class="subtitle">Curated color combinations for different industries and purposes. Click any hex code to copy it instantly.</p>
+        </header>
+
+        <!-- PORTFOLIO SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="icon">💼</span>
+                <h2>Portfolio / Personal Brand</h2>
+            </div>
+            <div class="palette-grid">
+                <!-- Palette 1 -->
+                <div class="palette-card">
+                    <div class="palette-title">Modern Minimal</div>
+                    <div class="palette-desc">Clean, professional, lets work speak for itself. Neutral base with a vibrant accent.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e293b;"></div><span class="chip-label" data-hex="#1e293b">#1e293b</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f8fafc; border:1px solid #ccc;"></div><span class="chip-label" data-hex="#f8fafc">#f8fafc</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff; border:1px solid #ccc;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#6366f1;"></div><span class="chip-label" data-hex="#6366f1">#6366f1</span></div>
+                    </div>
+                    <small style="color:#64748b;">Dark text · Light bg · Indigo accent</small>
+                </div>
+                <!-- Palette 2 -->
+                <div class="palette-card">
+                    <div class="palette-title">Bold Creative</div>
+                    <div class="palette-desc">Energetic and expressive, great for designers and artists. Dark background makes colors pop.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#0f172a;"></div><span class="chip-label" data-hex="#0f172a">#0f172a</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f97316;"></div><span class="chip-label" data-hex="#f97316">#f97316</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ec4899;"></div><span class="chip-label" data-hex="#ec4899">#ec4899</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#eab308;"></div><span class="chip-label" data-hex="#eab308">#eab308</span></div>
+                    </div>
+                    <small style="color:#64748b;">Dark bg · Orange/pink accents</small>
+                </div>
+                <!-- Palette 3 -->
+                <div class="palette-card">
+                    <div class="palette-title">Elegant Dark</div>
+                    <div class="palette-desc">Luxurious, high contrast. Navy and gold convey sophistication for high‑end portfolios.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#0a192f;"></div><span class="chip-label" data-hex="#0a192f">#0a192f</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ccd6f6;"></div><span class="chip-label" data-hex="#ccd6f6">#ccd6f6</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#e6c35c;"></div><span class="chip-label" data-hex="#e6c35c">#e6c35c</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                    </div>
+                    <small style="color:#64748b;">Deep navy · Soft lavender · Gold accent</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- E-COMMERCE STORE SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="icon">🛍️</span>
+                <h2>Online Store / E‑commerce</h2>
+            </div>
+            <div class="palette-grid">
+                <div class="palette-card">
+                    <div class="palette-title">Trustworthy Blue</div>
+                    <div class="palette-desc">Classic e‑commerce palette. Blue builds trust, orange drives action.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e3a8a;"></div><span class="chip-label" data-hex="#1e3a8a">#1e3a8a</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#3b82f6;"></div><span class="chip-label" data-hex="#3b82f6">#3b82f6</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f97316;"></div><span class="chip-label" data-hex="#f97316">#f97316</span></div>
+                    </div>
+                    <small style="color:#64748b;">Navy/blue · White · Orange CTA</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Warm & Inviting</div>
+                    <div class="palette-desc">Earthy tones create a cozy, natural feel – perfect for handmade goods or organic products.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#78350f;"></div><span class="chip-label" data-hex="#78350f">#78350f</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#fef3c7;"></div><span class="chip-label" data-hex="#fef3c7">#fef3c7</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#d97706;"></div><span class="chip-label" data-hex="#d97706">#d97706</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#065f46;"></div><span class="chip-label" data-hex="#065f46">#065f46</span></div>
+                    </div>
+                    <small style="color:#64748b;">Dark brown · Cream · Green leaf accent</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Luxury Gold</div>
+                    <div class="palette-desc">Premium fashion or jewelry stores. Black and gold convey exclusivity.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#000000;"></div><span class="chip-label" data-hex="#000000">#000000</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ca8a04;"></div><span class="chip-label" data-hex="#ca8a04">#ca8a04</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#1c1917;"></div><span class="chip-label" data-hex="#1c1917">#1c1917</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f5f5f4;"></div><span class="chip-label" data-hex="#f5f5f4">#f5f5f4</span></div>
+                    </div>
+                    <small style="color:#64748b;">Black · Gold · Dark stone · Off‑white</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="icon">📝</span>
+                <h2>Blog / Content Platform</h2>
+            </div>
+            <div class="palette-grid">
+                <div class="palette-card">
+                    <div class="palette-title">Soft & Readable</div>
+                    <div class="palette-desc">Prioritizes reading comfort. Gentle background with clear typography and a subtle accent.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#faf5ff;"></div><span class="chip-label" data-hex="#faf5ff">#faf5ff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e293b;"></div><span class="chip-label" data-hex="#1e293b">#1e293b</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#c084fc;"></div><span class="chip-label" data-hex="#c084fc">#c084fc</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                    </div>
+                    <small style="color:#64748b;">Lavender bg · Dark text · Purple accent</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Nature-Inspired</div>
+                    <div class="palette-desc">Earthy, calming tones for wellness or sustainability blogs.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#ecfdf5;"></div><span class="chip-label" data-hex="#ecfdf5">#ecfdf5</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#065f46;"></div><span class="chip-label" data-hex="#065f46">#065f46</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#78716c;"></div><span class="chip-label" data-hex="#78716c">#78716c</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#fde047;"></div><span class="chip-label" data-hex="#fde047">#fde047</span></div>
+                    </div>
+                    <small style="color:#64748b;">Mint bg · Deep green · Stone · Yellow highlight</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Vibrant Lifestyle</div>
+                    <div class="palette-desc">Lively and fun, for food, travel, or fashion blogs. High saturation but balanced.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#f43f5e;"></div><span class="chip-label" data-hex="#f43f5e">#f43f5e</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#0ea5e9;"></div><span class="chip-label" data-hex="#0ea5e9">#0ea5e9</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e293b;"></div><span class="chip-label" data-hex="#1e293b">#1e293b</span></div>
+                    </div>
+                    <small style="color:#64748b;">Coral · Cyan · White · Dark text</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEWS MAGAZINE SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="icon">📰</span>
+                <h2>News Magazine / Journalism</h2>
+            </div>
+            <div class="palette-grid">
+                <div class="palette-card">
+                    <div class="palette-title">Classic Editorial</div>
+                    <div class="palette-desc">Inspired by print newspapers. High contrast, authoritative red for headlines and urgency.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#000000;"></div><span class="chip-label" data-hex="#000000">#000000</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#dc2626;"></div><span class="chip-label" data-hex="#dc2626">#dc2626</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f1f5f9;"></div><span class="chip-label" data-hex="#f1f5f9">#f1f5f9</span></div>
+                    </div>
+                    <small style="color:#64748b;">White · Black · Red accent · Light gray</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Modern Digital</div>
+                    <div class="palette-desc">Dark mode with bright highlights. Common for tech and gaming news.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#0f172a;"></div><span class="chip-label" data-hex="#0f172a">#0f172a</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#e2e8f0;"></div><span class="chip-label" data-hex="#e2e8f0">#e2e8f0</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#facc15;"></div><span class="chip-label" data-hex="#facc15">#facc15</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#3b82f6;"></div><span class="chip-label" data-hex="#3b82f6">#3b82f6</span></div>
+                    </div>
+                    <small style="color:#64748b;">Dark blue bg · Light text · Yellow/blue accents</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Serious & Authoritative</div>
+                    <div class="palette-desc">Muted, formal tone. Navy and slate convey trust and expertise for financial or political news.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e293b;"></div><span class="chip-label" data-hex="#1e293b">#1e293b</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#64748b;"></div><span class="chip-label" data-hex="#64748b">#64748b</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#b45309;"></div><span class="chip-label" data-hex="#b45309">#b45309</span></div>
+                    </div>
+                    <small style="color:#64748b;">Slate · White · Muted blue · Amber detail</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- OTHER FIELDS SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <span class="icon">🏢</span>
+                <h2>Other Fields</h2>
+            </div>
+            <div class="palette-grid">
+                <div class="palette-card">
+                    <div class="palette-title">Healthcare / Wellness</div>
+                    <div class="palette-desc">Soft, reassuring colors. Clean and calming for clinics, therapists, or fitness apps.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#f0fdf4;"></div><span class="chip-label" data-hex="#f0fdf4">#f0fdf4</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#166534;"></div><span class="chip-label" data-hex="#166534">#166534</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#86efac;"></div><span class="chip-label" data-hex="#86efac">#86efac</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                    </div>
+                    <small style="color:#64748b;">Mint bg · Deep green · Soft green · White</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Tech Startup / SaaS</div>
+                    <div class="palette-desc">Modern, innovative. Blue/purple gradients dominate; bright accents suggest speed and innovation.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#4f46e5;"></div><span class="chip-label" data-hex="#4f46e5">#4f46e5</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#a78bfa;"></div><span class="chip-label" data-hex="#a78bfa">#a78bfa</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f8fafc;"></div><span class="chip-label" data-hex="#f8fafc">#f8fafc</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#06b6d4;"></div><span class="chip-label" data-hex="#06b6d4">#06b6d4</span></div>
+                    </div>
+                    <small style="color:#64748b;">Indigo · Soft purple · Light bg · Cyan accent</small>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-title">Education / e‑Learning</div>
+                    <div class="palette-desc">Friendly and accessible. Warm neutrals with a gentle blue for trust and focus.</div>
+                    <div class="swatches">
+                        <div class="color-chip"><div class="chip-circle" style="background:#fef2f2;"></div><span class="chip-label" data-hex="#fef2f2">#fef2f2</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#1e40af;"></div><span class="chip-label" data-hex="#1e40af">#1e40af</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#f59e0b;"></div><span class="chip-label" data-hex="#f59e0b">#f59e0b</span></div>
+                        <div class="color-chip"><div class="chip-circle" style="background:#ffffff;"></div><span class="chip-label" data-hex="#ffffff">#ffffff</span></div>
+                    </div>
+                    <small style="color:#64748b;">Warm rose bg · Classic blue · Amber · White</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="toast" id="toast">✅ Hex copied!</div>
+
+    <script>
+        (function() {
+            const toast = document.getElementById('toast');
+            let toastTimer;
+
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 1600);
+            }
+
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        return success;
+                    }
+                } catch (err) {
+                    return false;
+                }
+            }
+
+            document.querySelectorAll('.chip-label').forEach(label => {
+                label.addEventListener('click', async (e) => {
+                    const hex = label.getAttribute('data-hex');
+                    if (!hex) return;
+                    const success = await copyToClipboard(hex);
+                    if (success) {
+                        label.classList.add('copied');
+                        setTimeout(() => label.classList.remove('copied'), 600);
+                        showToast(`✅ ${hex} copied!`);
+                    } else {
+                        showToast('⚠️ Copy failed');
+                    }
+                });
+            });
+
+            console.log('🎨 Color palette suggestions ready – click any hex code to copy.');
+        })();
+    </script>
+</body>
+</html>

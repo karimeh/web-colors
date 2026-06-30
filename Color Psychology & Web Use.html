@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Psychology & Web Use – Quick Reference</title>
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 4px 12px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+            --transition: 0.2s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 24px 16px 60px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+        header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .color-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: box-shadow var(--transition), transform var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .color-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-swatch {
+            height: 110px;
+            width: 100%;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .card-swatch::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, transparent 60%);
+        }
+
+        .card-info {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .color-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .hex-code {
+            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            cursor: pointer;
+            user-select: all;
+            transition: background 0.15s;
+            align-self: flex-start;
+            color: #334155;
+            letter-spacing: 0.3px;
+        }
+        .hex-code:hover {
+            background: #e2e8f0;
+        }
+        .hex-code.copied {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .psych-label, .app-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .psych-text, .app-text {
+            font-size: 0.88rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 48px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.9rem; }
+            .colors-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Color Psychology & Web Use</h1>
+            <p>How common colors affect emotions – and where to use them in design</p>
+        </header>
+
+        <div class="colors-grid" id="colorsGrid">
+            <!-- Dynamically generated by JS for cleaner copy handling -->
+        </div>
+
+        <footer>
+            <p>✨ Click any hex code to copy it. Use these insights to build emotionally intelligent interfaces.</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">✅ Hex copied!</div>
+
+    <script>
+        (function() {
+            const colorData = [
+                {
+                    name: "Red",
+                    hex: "#dc2626",
+                    swatchBg: "#dc2626",
+                    psychology: "Passion, urgency, excitement, danger. Grabs attention instantly.",
+                    application: "CTAs (Buy Now), sales badges, error alerts. Use sparingly; too much creates anxiety."
+                },
+                {
+                    name: "Blue",
+                    hex: "#2563eb",
+                    swatchBg: "#2563eb",
+                    psychology: "Trust, calm, professionalism, stability. Most liked color globally.",
+                    application: "Corporate sites, banks, social media (Facebook, Twitter). Ideal for backgrounds and links."
+                },
+                {
+                    name: "Green",
+                    hex: "#16a34a",
+                    swatchBg: "#16a34a",
+                    psychology: "Nature, growth, health, wealth, freshness. Soothing to the eye.",
+                    application: "Eco brands, health apps, success messages, finance. Works well for call‑to‑action when not red."
+                },
+                {
+                    name: "Yellow",
+                    hex: "#eab308",
+                    swatchBg: "#eab308",
+                    psychology: "Optimism, happiness, caution, clarity. Most visible color.",
+                    application: "Warning notices, highlights, children’s products. Can cause eye strain in large doses – best as accent."
+                },
+                {
+                    name: "Orange",
+                    hex: "#ea580c",
+                    swatchBg: "#ea580c",
+                    psychology: "Energy, friendliness, affordability, warmth. Combines red’s urgency with yellow’s cheer.",
+                    application: "E‑commerce CTAs, food brands, entertainment. Less aggressive than red, great for subscriptions."
+                },
+                {
+                    name: "Purple",
+                    hex: "#7c3aed",
+                    swatchBg: "#7c3aed",
+                    psychology: "Luxury, creativity, wisdom, spirituality. Historically rare, associated with royalty.",
+                    application: "Beauty, high‑end products, creative agencies. Dark purples feel premium; light purples are calming."
+                },
+                {
+                    name: "Pink",
+                    hex: "#ec4899",
+                    swatchBg: "#ec4899",
+                    psychology: "Romance, playfulness, femininity, sweetness. Soft and approachable.",
+                    application: "Fashion, cosmetics, candy brands, apps targeting young audience. Hot pink adds youthful energy."
+                },
+                {
+                    name: "Teal / Cyan",
+                    hex: "#0d9488",
+                    swatchBg: "#0d9488",
+                    psychology: "Clarity, sophistication, balance. Merges blue’s trust with green’s renewal.",
+                    application: "Tech startups, medical interfaces, modern UI. Creates a fresh, innovative vibe."
+                },
+                {
+                    name: "Brown",
+                    hex: "#92400e",
+                    swatchBg: "#92400e",
+                    psychology: "Earthiness, reliability, comfort, rustic. Connects to nature and tradition.",
+                    application: "Organic products, coffee brands, outdoor gear. Paired with cream/beige for a warm palette."
+                },
+                {
+                    name: "Black",
+                    hex: "#1e293b",
+                    swatchBg: "#1e293b",
+                    psychology: "Elegance, power, mystery, sophistication. Modern and minimalist.",
+                    application: "Luxury fashion, high‑contrast typography, backgrounds. Often used for dark mode interfaces."
+                },
+                {
+                    name: "White",
+                    hex: "#ffffff",
+                    swatchBg: "#ffffff",
+                    psychology: "Purity, simplicity, cleanliness, spaciousness. Represents a fresh start.",
+                    application: "Backgrounds, negative space, healthcare sites. Always pair with adequate contrast for text."
+                },
+                {
+                    name: "Gray",
+                    hex: "#6b7280",
+                    swatchBg: "#6b7280",
+                    psychology: "Neutrality, balance, timelessness. Professional and unobtrusive.",
+                    application: "Body text, borders, secondary buttons. Essential for creating visual hierarchy without distraction."
+                },
+                {
+                    name: "Gold",
+                    hex: "#ca8a04",
+                    swatchBg: "#ca8a04",
+                    psychology: "Prestige, success, quality, warmth. Associated with achievement.",
+                    application: "Badges, premium features, certificates. Best used sparingly to convey top‑tier status."
+                },
+                {
+                    name: "Lavender",
+                    hex: "#a78bfa",
+                    swatchBg: "#a78bfa",
+                    psychology: "Calmness, grace, nostalgia. Softens and adds a gentle touch.",
+                    application: "Wellness apps, meditation platforms, beauty blogs. Works beautifully with white and sage green."
+                }
+            ];
+
+            const grid = document.getElementById('colorsGrid');
+            const toast = document.getElementById('toast');
+            let toastTimer;
+
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+            }
+
+            async function copyToClipboard(text) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    } else {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        const success = document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        return success;
+                    }
+                } catch (err) {
+                    return false;
+                }
+            }
+
+            colorData.forEach(color => {
+                const card = document.createElement('div');
+                card.className = 'color-card';
+
+                const swatchDiv = document.createElement('div');
+                swatchDiv.className = 'card-swatch';
+                swatchDiv.style.backgroundColor = color.swatchBg;
+
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'card-info';
+
+                const nameEl = document.createElement('div');
+                nameEl.className = 'color-name';
+                nameEl.textContent = color.name;
+
+                const hexEl = document.createElement('span');
+                hexEl.className = 'hex-code';
+                hexEl.textContent = color.hex;
+                hexEl.setAttribute('data-hex', color.hex);
+                hexEl.title = 'Click to copy HEX';
+
+                const psychLabel = document.createElement('div');
+                psychLabel.className = 'psych-label';
+                psychLabel.textContent = 'Psychology';
+
+                const psychText = document.createElement('div');
+                psychText.className = 'psych-text';
+                psychText.textContent = color.psychology;
+
+                const appLabel = document.createElement('div');
+                appLabel.className = 'app-label';
+                appLabel.textContent = 'Web Application';
+
+                const appText = document.createElement('div');
+                appText.className = 'app-text';
+                appText.textContent = color.application;
+
+                infoDiv.appendChild(nameEl);
+                infoDiv.appendChild(hexEl);
+                infoDiv.appendChild(psychLabel);
+                infoDiv.appendChild(psychText);
+                infoDiv.appendChild(appLabel);
+                infoDiv.appendChild(appText);
+
+                card.appendChild(swatchDiv);
+                card.appendChild(infoDiv);
+                grid.appendChild(card);
+            });
+
+            // Event delegation for copy
+            grid.addEventListener('click', async (e) => {
+                const hexEl = e.target.closest('.hex-code');
+                if (!hexEl) return;
+                const hex = hexEl.getAttribute('data-hex');
+                const success = await copyToClipboard(hex);
+                if (success) {
+                    hexEl.classList.add('copied');
+                    setTimeout(() => hexEl.classList.remove('copied'), 600);
+                    showToast(`✅ ${hex} copied!`);
+                } else {
+                    showToast('⚠️ Copy failed');
+                }
+            });
+
+            console.log('🧠 Color psychology guide ready. Click any hex code to copy.');
+        })();
+    </script>
+</body>
+</html>
